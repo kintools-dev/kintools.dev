@@ -7,7 +7,14 @@ import appCss from "#/global.css?url";
 
 export const Route = createRootRoute({
   head: () => {
-    const { meta, links } = seoHead({
+    // Only `meta` is used here, not `links` -- TanStack Router's
+    // leaf-over-root head merge dedupes `meta` by name/property (so a
+    // page's own title/description cleanly replace these fallbacks), but
+    // it does NOT dedupe `links` by `rel`. Spreading this call's canonical
+    // link in here would sit alongside every leaf route's own (correct)
+    // canonical instead of being replaced by it, leaving two conflicting
+    // <link rel="canonical"> tags on every single page.
+    const { meta } = seoHead({
       title: SITE_NAME,
       description: "Framework-agnostic TypeScript libraries.",
     });
@@ -65,7 +72,6 @@ export const Route = createRootRoute({
           rel: "stylesheet",
           href: docsCss,
         },
-        ...links,
       ],
     };
   },

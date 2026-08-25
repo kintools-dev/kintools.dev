@@ -6,7 +6,7 @@ import { DocsLayout } from "#/components/DocsLayout.tsx";
 import { formComponents } from "#/components/form/components.ts";
 import { formNav, formPages } from "#/content/form.ts";
 import { loadDocsPage } from "#/content/page-cache.ts";
-import { seoHead } from "#/lib/seo.ts";
+import { markdownMirrorPath, seoHead } from "#/lib/seo.ts";
 
 export const Route = createFileRoute("/form/$")({
   loader: async ({ params }) => {
@@ -16,12 +16,15 @@ export const Route = createFileRoute("/form/$")({
     const { frontmatter } = await page;
     return { slug, frontmatter };
   },
-  head: ({ loaderData, params }) =>
-    seoHead({
+  head: ({ loaderData, params }) => {
+    const slug = params._splat ?? "";
+    return seoHead({
       title: loaderData?.frontmatter?.title ?? formNav.title,
       description: loaderData?.frontmatter?.description ?? formNav.description,
-      path: `/form/${params._splat ?? ""}`,
-    }),
+      path: slug ? `/form/${slug}` : "/form",
+      markdownPath: markdownMirrorPath("/form", slug),
+    });
+  },
   component: FormDocLayout,
 });
 

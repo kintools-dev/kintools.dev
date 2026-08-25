@@ -6,7 +6,7 @@ import { DocsLayout } from "#/components/DocsLayout.tsx";
 import { storeComponents } from "#/components/store/components.ts";
 import { loadDocsPage } from "#/content/page-cache.ts";
 import { storeNav, storePages } from "#/content/store.ts";
-import { seoHead } from "#/lib/seo.ts";
+import { markdownMirrorPath, seoHead } from "#/lib/seo.ts";
 
 export const Route = createFileRoute("/store/$")({
   loader: async ({ params }) => {
@@ -16,12 +16,15 @@ export const Route = createFileRoute("/store/$")({
     const { frontmatter } = await page;
     return { slug, frontmatter };
   },
-  head: ({ loaderData, params }) =>
-    seoHead({
+  head: ({ loaderData, params }) => {
+    const slug = params._splat ?? "";
+    return seoHead({
       title: loaderData?.frontmatter?.title ?? storeNav.title,
       description: loaderData?.frontmatter?.description ?? storeNav.description,
-      path: `/store/${params._splat ?? ""}`,
-    }),
+      path: slug ? `/store/${slug}` : "/store",
+      markdownPath: markdownMirrorPath("/store", slug),
+    });
+  },
   component: StoreDocPage,
 });
 

@@ -123,6 +123,7 @@ const config = defineConfig({
       prerender: {
         enabled: true,
         crawlLinks: true,
+        autoSubfolderIndex: false,
       },
       pages: [{ path: "/" }, { path: "/form" }, { path: "/store" }],
     }),
