@@ -180,7 +180,7 @@ function buildLlmsTxt(
     lines.push(`## ${nav.title}`, "");
     for (const page of projectPages[project]) {
       lines.push(
-        `- [${page.title}](${SITE_URL}${page.path}): ${page.description}`,
+        `- [${page.title}](${SITE_URL}${page.path}.md): ${page.description}`,
       );
     }
     lines.push("");
