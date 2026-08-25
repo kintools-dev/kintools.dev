@@ -55,12 +55,23 @@ deno task check
 
 ## Deploying
 
-Build locally (see above) and commit `dist/`. Cloudflare Pages' git integration
-then just serves the already-built output on every push -- configure the Pages
-project with no build command and `dist/client` as the output directory. This
-sidesteps needing `form`/`store` checked out alongside this repo in CI:
-Cloudflare's git integration only clones this one repo, so it can't run
-`deno task build` itself.
+Cloudflare Pages' git integration only clones this one repo, so `form`/`store`
+aren't checked out alongside it the way local dev expects. The Pages build
+command works around that by cloning them itself (both are public) before
+running the real build:
+
+```bash
+curl -fsSL https://deno.land/install.sh | sh -s -- -y && export PATH="$HOME/.deno/bin:$PATH" && git clone --depth 1 https://github.com/kintools-dev/form.git ../form && git clone --depth 1 https://github.com/kintools-dev/store.git ../store && deno task build
+```
+
+Configure the Pages project with that as the build command and `dist/client` as
+the build output directory. `dist/` itself is gitignored -- it's build output,
+not something to commit.
+
+Because Pages only watches pushes to this repo, a docs change in `form` or
+`store` alone won't trigger a rebuild here. Each of those repos has a
+`docs/**`-triggered workflow that hits this project's Cloudflare Pages deploy
+hook (Settings -> Builds & deployments -> Deploy hooks) to pick up the change.
 
 ## Routing
 
