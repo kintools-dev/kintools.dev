@@ -17,7 +17,7 @@ var __exportAll = (all, no_symbols) => {
 var docs_default = "/assets/docs-53xYAnwi.css";
 //#endregion
 //#region src/global.css?url
-var global_default = "/assets/global-D_qDb6tx.css";
+var global_default = "/assets/global-B7MfVUE5.css";
 //#endregion
 //#region src/routes/__root.tsx
 var Route$3 = createRootRoute({
@@ -275,7 +275,7 @@ function slugFromPath$1(path) {
 var formPages = Object.fromEntries(Object.entries(modules$1).map(([path, loader]) => [slugFromPath$1(path), loader]));
 //#endregion
 //#region src/routes/form/$.tsx
-var $$splitComponentImporter$1 = () => import("./_-DQIZCNdQ.js");
+var $$splitComponentImporter$1 = () => import("./_-CClTvs3P.js");
 var Route$1 = createFileRoute("/form/$")({
 	loader: async ({ params }) => {
 		const slug = params._splat ?? "";
@@ -476,7 +476,7 @@ function slugFromPath(path) {
 var storePages = Object.fromEntries(Object.entries(modules).map(([path, loader]) => [slugFromPath(path), loader]));
 //#endregion
 //#region src/routes/store/$.tsx
-var $$splitComponentImporter = () => import("./_-BghqhVj9.js");
+var $$splitComponentImporter = () => import("./_-TQqOvRlt.js");
 var Route = createFileRoute("/store/$")({
 	loader: async ({ params }) => {
 		const slug = params._splat ?? "";

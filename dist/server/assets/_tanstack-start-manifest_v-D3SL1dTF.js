@@ -8,14 +8,14 @@ var tsrStartManifest = () => ({ routes: {
 			"/store/$"
 		],
 		preloads: [
-			"/assets/index-CRYE213e.js",
+			"/assets/index-C6QiUEf0.js",
 			"/assets/jsx-runtime-BkSabwWG.js",
 			"/assets/link-ePbtguYT.js"
 		],
 		scripts: [{ attrs: {
 			type: "module",
 			async: !0,
-			src: "/assets/index-CRYE213e.js"
+			src: "/assets/index-C6QiUEf0.js"
 		} }]
 	},
 	"/": {
@@ -27,8 +27,8 @@ var tsrStartManifest = () => ({ routes: {
 		filePath: "D:/kin/kintools/kintools.dev/src/routes/form/$.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/_-B1ALQPBq.js",
-			"/assets/Table-CinOqrNo.js",
+			"/assets/_-CX9RIvLr.js",
+			"/assets/Table-Cg7_nr5J.js",
 			"/assets/Principle-D5V0qgZX.js"
 		]
 	},
@@ -36,8 +36,8 @@ var tsrStartManifest = () => ({ routes: {
 		filePath: "D:/kin/kintools/kintools.dev/src/routes/store/$.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/_-DUldJT7g.js",
-			"/assets/Table-CinOqrNo.js",
+			"/assets/_-BM2octmx.js",
+			"/assets/Table-Cg7_nr5J.js",
 			"/assets/Principle-D5V0qgZX.js"
 		]
 	}

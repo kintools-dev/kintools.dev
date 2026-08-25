@@ -1,5 +1,5 @@
 import { t as loadDocsPage } from "./page-cache-CzEWyQNu.js";
-import { a as Route, o as formNav, s as formPages } from "./router-D1QS6oCI.js";
+import { a as Route, o as formNav, s as formPages } from "./router-BJ6RTnsI.js";
 import { a as Section, c as Grid, d as Tooltip, i as SectionHeader, l as Card, m as DocsFooter, n as Home, o as Prose, r as Hero, s as Lede, t as Principle, u as Button } from "./Principle-BWXq106P.js";
 import { a as CodeGroupItem, c as useFramework, i as Container, l as DocsHeader, n as SideBySide, o as CodeGroup, r as Cta, s as DocsLayout, t as Table } from "./Table-DGJcZ_fr.js";
 import { Children, Suspense, isValidElement, use } from "react";
