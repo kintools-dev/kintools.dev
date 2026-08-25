@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+/* The form/docs and store/docs sibling repos live one level up, outside
+   this project's root, so Tailwind's automatic source detection never
+   walks into them on its own -- these opt them back in explicitly. */
+@source "../../form/docs";
+@source "../../store/docs";
+
+@theme {
+	--color-bg: #ffffff;
+	--color-bg-soft: #f6f7f9;
+	--color-bg-elv: #ffffff;
+	--color-border: #d1d2d3;
+	--color-text1: #1c1d1f;
+	--color-text2: #52525b;
+	--color-text3: #6b7280;
+	--color-brand1: #059669;
+	--color-brand2: #047857;
+	--color-code-bg: #f6f7f9;
+	--color-code-inline-bg: #ecfdf5;
+	--color-code-inline-text: #065f46;
+
+	/* A second accent, distinct from --color-brand1, used only on the root
+	   homepage to tell the Kin Store card/badges apart from Kin Form's
+	   (which keeps using brand1, matching its own docs site). */
+	--color-accent-store: #4f46e5;
+
+	--shadow-popover: 0 4px 16px rgba(0, 0, 0, 0.12);
+	--shadow-modal: 0 16px 48px rgba(0, 0, 0, 0.2);
+}
+
+html,
+body {
+	@apply min-h-dvh;
+}
+
+body {
+	@apply text-text1 scrollbar-gutter-stable;
+}
+
+strong,
+th {
+	@apply font-medium;
+}
+
+/* Decorative gradient glow behind the homepage hero. Pure CSS, no canvas/JS:
+   two blurred radial gradients (brand1 + accent-store, foreshadowing the two
+   library colors used further down the page) drifting slowly via a
+   transform-only keyframe so it stays cheap to composite.
+
+   Sized with its own fixed height/circle radii, deliberately independent of
+   the hero text's own (short) box: each gradient must fully resolve to
+   transparent well before it reaches this element's edges, since a filter's
+   blur can't be trusted to fade out cleanly right at a clipped boundary --
+   letting it hit the edge mid-fade reads as a hard rectangle, not a glow. */
+.hero-glow {
+	position: absolute;
+	inset-inline: 0;
+	top: 0;
+	height: 26rem;
+	z-index: -10;
+	pointer-events: none;
+	background:
+		radial-gradient(480px circle at 40% 30%, color-mix(in oklab, var(--color-brand1) 20%, transparent), transparent 60%),
+		radial-gradient(400px circle at 76% 40%, color-mix(in oklab, var(--color-accent-store) 20%, transparent), transparent 60%);
+	filter: blur(48px);
+	animation: hero-glow-drift 22s ease-in-out infinite alternate;
+}
+
+@keyframes hero-glow-drift {
+	from {
+		transform: translate3d(0, 0, 0) scale(1);
+	}
+	to {
+		transform: translate3d(-2%, 3%, 0) scale(1.06);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.hero-glow {
+		animation: none;
+	}
+}
+
+/* Native, JS-free scroll-driven reveal: each element fades/slides in as it
+   enters the viewport, driven by animation-timeline: view() rather than an
+   IntersectionObserver. Browsers without support (@supports guard below)
+   just render the end state, so the content is never stuck invisible. */
+@keyframes reveal-up {
+	from {
+		opacity: 0;
+		transform: translateY(28px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.reveal-on-scroll {
+	animation: reveal-up linear both;
+	animation-timeline: view();
+	animation-range: entry 0% entry 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.reveal-on-scroll {
+		animation: none;
+	}
+}
+
+@supports not (animation-timeline: view()) {
+	.reveal-on-scroll {
+		opacity: 1;
+		transform: none;
+	}
+}

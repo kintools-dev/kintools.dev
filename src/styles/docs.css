@@ -1,0 +1,147 @@
+@reference "../global.css";
+
+@layer base {
+	pre[data-theme] span {
+		color: var(--shiki-light);
+	}
+
+	.docs h1 {
+		@apply relative mb-4 text-4xl font-semibold;
+	}
+
+	.docs h2 {
+		@apply relative mt-8 mb-3 scroll-mt-20 border-t border-border pt-2 text-2xl font-semibold;
+	}
+
+	.docs h3 {
+		@apply relative mt-6 mb-2 scroll-mt-20 text-lg font-semibold;
+	}
+
+	/* The `#` permalink rehype-autolink-headings prepends before each
+	heading's text (see vite.config.ts). Positioned into the left gutter
+	(out of the text's normal flow) rather than inline, VitePress-style, and
+	hidden until the heading is hovered or the link itself is focused so it
+	doesn't clutter the prose at rest. */
+	.docs h1 .header-anchor,
+	.docs h2 .header-anchor,
+	.docs h3 .header-anchor {
+		@apply absolute top-1/2 left-0 leading-none -translate-x-full -translate-y-1/2 pr-1 text-text3 no-underline opacity-0 transition-opacity;
+	}
+
+	.docs h1:hover .header-anchor,
+	.docs h2:hover .header-anchor,
+	.docs h3:hover .header-anchor,
+	.docs h1 .header-anchor:focus,
+	.docs h2 .header-anchor:focus,
+	.docs h3 .header-anchor:focus {
+		@apply opacity-100;
+	}
+
+	.docs h1 .header-anchor:hover,
+	.docs h2 .header-anchor:hover,
+	.docs h3 .header-anchor:hover {
+		@apply text-brand1;
+	}
+
+	.docs p {
+		@apply my-3;
+	}
+
+	.docs a {
+		@apply text-brand1;
+	}
+
+	ul,
+	ol {
+		@apply pl-6 list-disc;
+	}
+
+	li {
+		@apply mb-1;
+	}
+
+	.docs table {
+		@apply my-4 w-full border-collapse;
+	}
+
+	.docs th,
+	.docs td {
+		@apply border border-border px-3 py-1.5 text-left;
+	}
+
+	pre {
+		@apply my-4 rounded-lg bg-code-bg py-4 overflow-x-auto;
+	}
+
+	code {
+		font-size: 0.9em;
+		@apply rounded bg-code-inline-bg px-1.5 py-px text-code-inline-text;
+	}
+
+	:not(pre)>code {
+		@apply whitespace-nowrap;
+	}
+
+	pre>code {
+		@apply bg-transparent p-0 text-text1 text-sm;
+	}
+
+	/* rehype-pretty-code (vite.config.ts) wraps each source line in a
+	`[data-line]` span and, with `grid: true`, lays `code` out as a CSS grid
+	so every line's row spans the widest line in the block. Padding lives on
+	the line itself (not on `pre`) so a `[data-highlighted-line]` background
+	can bleed to the block's full, possibly horizontally-scrolled, width. */
+	pre [data-line] {
+		@apply block px-4 border-l-2 border-transparent;
+	}
+
+	pre [data-highlighted-line] {
+		@apply border-brand1 bg-brand1/9;
+	}
+
+	.code-group-panel pre {
+		@apply m-0 rounded-none;
+	}
+
+	.lib-home figure>pre {
+		@apply m-0;
+	}
+}
+
+@layer components {
+
+	/* The docs sidebar's collapsible panel, kept as a sibling of the
+	`<details>` toggle rather than nested inside it: a closed `<details>`'s
+	non-summary content is collapsed by the browser through a mechanism a
+	descendant's own styles can't override (confirmed empirically -- every
+	`getComputedStyle` property read back as visible/block while nothing
+	painted), so forcing it back open from inside would be unreliable. This
+	`:has()` selector reads the toggle's `[open]` state from outside it
+	instead: hidden by default, a fixed overlay while the sidebar's own
+	`<details>` is open, and (see the `lg` override below) always visible
+	as a static column regardless of that state once there's room for one. */
+	.sidebar-panel {
+		display: none;
+	}
+
+	.sidebar-toggle:has(details[open]) .sidebar-panel {
+		display: block;
+		position: fixed;
+		inset-inline: 0;
+		top: 3.5rem;
+		bottom: 0;
+		z-index: 30;
+		overflow-y: auto;
+		overscroll-behavior: contain;
+		background-color: var(--color-bg);
+		padding: 1rem;
+		box-shadow: var(--shadow-modal);
+	}
+
+	@media (width >=64rem) {
+		.sidebar-panel {
+			display: block;
+			position: static;
+		}
+	}
+}

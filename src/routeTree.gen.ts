@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as FormSplatRouteImport } from './routes/form/$'
+import { Route as StoreSplatRouteImport } from './routes/store/$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FormSplatRoute = FormSplatRouteImport.update({
+  id: '/form/$',
+  path: '/form/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StoreSplatRoute = StoreSplatRouteImport.update({
+  id: '/store/$',
+  path: '/store/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/form/$': typeof FormSplatRoute
+  '/store/$': typeof StoreSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/form/$': typeof FormSplatRoute
+  '/store/$': typeof StoreSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/form/$': typeof FormSplatRoute
+  '/store/$': typeof StoreSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/form/$' | '/store/$'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/form/$' | '/store/$'
+  id: '__root__' | '/' | '/form/$' | '/store/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FormSplatRoute: typeof FormSplatRoute
+  StoreSplatRoute: typeof StoreSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/form/$': {
+      id: '/form/$'
+      path: '/form/$'
+      fullPath: '/form/$'
+      preLoaderRoute: typeof FormSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/store/$': {
+      id: '/store/$'
+      path: '/store/$'
+      fullPath: '/store/$'
+      preLoaderRoute: typeof StoreSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FormSplatRoute: FormSplatRoute,
+  StoreSplatRoute: StoreSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
