@@ -18,6 +18,17 @@ To build this application for production:
 deno task build
 ```
 
+This reads doc content directly from `../form/docs` and `../store/docs` (see
+`src/content/form.ts`/`store.ts`), so it only works with the `form` and `store`
+repos checked out as siblings of this one, e.g.:
+
+```
+kintools/
+  kintools.dev/
+  form/
+  store/
+```
+
 ## Styling
 
 This project uses [Tailwind CSS](https://tailwindcss.com/) for styling.
@@ -42,20 +53,12 @@ deno task format
 deno task check
 ```
 
-## Deploy to Cloudflare Workers
+## Deploying
 
-This project uses the Cloudflare Vite plugin (configured in `vite.config.ts`)
-and `wrangler.jsonc`:
-
-1. Install Wrangler: `npm install -g wrangler`
-2. Authenticate: `wrangler login`
-3. Deploy: `npx wrangler deploy`
-
-For production env vars, run `wrangler secret put MY_VAR` for each secret listed
-in `.env.example`. Public (non-secret) vars go in `wrangler.jsonc` under `vars`.
-
-KV, D1, R2, and Durable Object bindings are configured in `wrangler.jsonc` — see
-https://developers.cloudflare.com/workers/wrangler/configuration/.
+Not yet decided. `dist/` is committed so the site can be served as-is in the
+meantime; there's no CI here yet, since a build needs `form`/`store` checked out
+alongside this repo (see above), and a plain git-integration build (e.g.
+Cloudflare Pages' default) only clones this one repo.
 
 ## Routing
 

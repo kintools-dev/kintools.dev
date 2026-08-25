@@ -8,7 +8,7 @@
     "build-search-index": "deno run -A --node-modules-dir scripts/build-search-index.ts",
     "dev": "deno task build-search-index && deno run -A --node-modules-dir npm:vite dev --port 3000",
     "generate-routes": "deno run -A npm:@tanstack/router-cli@^1.167.32/tsr generate",
-    "build": "deno task build-search-index && deno run -A --node-modules-dir npm:vite build",
+    "build": "deno task build-search-index && deno run -A --node-modules-dir scripts/build-site.ts",
     "preview": "deno run -A --node-modules-dir npm:vite preview",
     "format": "deno fmt",
     "lint": "deno lint",
@@ -64,11 +64,12 @@
       "src/routeTree.gen.ts",
       "src/global.css",
       "src/styles/docs.css",
-      "dist"
+      "dist",
+      "public/search-index"
     ]
   },
   "lint": {
-    "exclude": ["src/routeTree.gen.ts", "dist"],
+    "exclude": ["src/routeTree.gen.ts", "dist", "public/search-index"],
     "rules": {
       "exclude": ["no-window"]
     }
