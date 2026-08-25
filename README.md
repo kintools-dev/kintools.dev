@@ -55,10 +55,12 @@ deno task check
 
 ## Deploying
 
-Not yet decided. `dist/` is committed so the site can be served as-is in the
-meantime; there's no CI here yet, since a build needs `form`/`store` checked out
-alongside this repo (see above), and a plain git-integration build (e.g.
-Cloudflare Pages' default) only clones this one repo.
+Build locally (see above) and commit `dist/`. Cloudflare Pages' git integration
+then just serves the already-built output on every push -- configure the Pages
+project with no build command and `dist/client` as the output directory. This
+sidesteps needing `form`/`store` checked out alongside this repo in CI:
+Cloudflare's git integration only clones this one repo, so it can't run
+`deno task build` itself.
 
 ## Routing
 
