@@ -1,0 +1,115 @@
+{
+  "version": 1.1,
+  "atDirectives": [
+    {
+      "name": "@tailwind",
+      "description": "Injects Tailwind's base, components, utilities, and variants styles into your CSS.",
+      "references": [
+        {
+          "name": "Tailwind CSS documentation",
+          "url": "https://tailwindcss.com/docs/functions-and-directives#tailwind"
+        }
+      ]
+    },
+    {
+      "name": "@apply",
+      "description": "Inlines the styles of one or more existing utility classes into a custom CSS rule.",
+      "references": [
+        {
+          "name": "Tailwind CSS documentation",
+          "url": "https://tailwindcss.com/docs/functions-and-directives#apply"
+        }
+      ]
+    },
+    {
+      "name": "@layer",
+      "description": "Assigns a block of CSS to one of Tailwind's layers (base, components, utilities) so it's ordered correctly.",
+      "references": [
+        {
+          "name": "Tailwind CSS documentation",
+          "url": "https://tailwindcss.com/docs/functions-and-directives#layer"
+        }
+      ]
+    },
+    {
+      "name": "@theme",
+      "description": "Defines design tokens (colors, fonts, spacing, etc.) as CSS variables that Tailwind turns into utility classes.",
+      "references": [
+        {
+          "name": "Tailwind CSS documentation",
+          "url": "https://tailwindcss.com/docs/theme#theme-variable-namespaces"
+        }
+      ]
+    },
+    {
+      "name": "@source",
+      "description": "Adds a file or directory to Tailwind's automatic source detection, in addition to what it finds on its own.",
+      "references": [
+        {
+          "name": "Tailwind CSS documentation",
+          "url": "https://tailwindcss.com/docs/detecting-classes-in-source-files#explicitly-registering-sources"
+        }
+      ]
+    },
+    {
+      "name": "@utility",
+      "description": "Defines a custom utility class that participates in variant support (hover:, lg:, etc.) like Tailwind's built-in utilities.",
+      "references": [
+        {
+          "name": "Tailwind CSS documentation",
+          "url": "https://tailwindcss.com/docs/adding-custom-styles#adding-custom-utilities"
+        }
+      ]
+    },
+    {
+      "name": "@variant",
+      "description": "Applies a Tailwind variant to styles inside a custom CSS rule.",
+      "references": [
+        {
+          "name": "Tailwind CSS documentation",
+          "url": "https://tailwindcss.com/docs/adding-custom-styles#using-variants"
+        }
+      ]
+    },
+    {
+      "name": "@custom-variant",
+      "description": "Defines a custom variant that can be used like a built-in one (e.g. hover:, dark:).",
+      "references": [
+        {
+          "name": "Tailwind CSS documentation",
+          "url": "https://tailwindcss.com/docs/adding-custom-styles#adding-custom-variants"
+        }
+      ]
+    },
+    {
+      "name": "@plugin",
+      "description": "Loads a legacy JavaScript-based Tailwind plugin directly from CSS.",
+      "references": [
+        {
+          "name": "Tailwind CSS documentation",
+          "url": "https://tailwindcss.com/docs/functions-and-directives#plugin"
+        }
+      ]
+    },
+    {
+      "name": "@config",
+      "description": "Loads a legacy JavaScript-based Tailwind config file directly from CSS.",
+      "references": [
+        {
+          "name": "Tailwind CSS documentation",
+          "url": "https://tailwindcss.com/docs/functions-and-directives#config"
+        }
+      ]
+    },
+    {
+      "name": "@reference",
+      "description": "Imports theme variables and custom styles from another file without duplicating its output CSS.",
+      "references": [
+        {
+          "name": "Tailwind CSS documentation",
+          "url": "https://tailwindcss.com/docs/functions-and-directives#reference"
+        }
+      ]
+    }
+  ]
+}

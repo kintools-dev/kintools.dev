@@ -1,0 +1,76 @@
+{
+  "nodeModulesDir": "auto",
+  "minimumDependencyAge": {
+    "age": "P1D",
+    "exclude": ["jsr:@kintools/store-core", "jsr:@kintools/store-react"]
+  },
+  "tasks": {
+    "build-search-index": "deno run -A --node-modules-dir scripts/build-search-index.ts",
+    "dev": "deno task build-search-index && deno run -A --node-modules-dir npm:vite dev --port 3000",
+    "generate-routes": "deno run -A npm:@tanstack/router-cli@^1.167.32/tsr generate",
+    "build": "deno task build-search-index && deno run -A --node-modules-dir npm:vite build",
+    "preview": "deno run -A --node-modules-dir npm:vite preview",
+    "format": "deno fmt",
+    "lint": "deno lint",
+    "check": "deno fmt --check && deno lint"
+  },
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "jsxImportSourceTypes": "@types/react",
+    "lib": ["ES2022", "dom", "dom.iterable", "deno.ns"],
+    "types": ["npm:vite/client"],
+    "strict": true,
+    "skipLibCheck": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "imports": {
+    "#/": "./src/",
+    "@kintools/store-core": "jsr:@kintools/store-core@^0.3.0",
+    "@kintools/store-react": "jsr:@kintools/store-react@^0.3.1",
+    "@deno/vite-plugin": "npm:@deno/vite-plugin@^2.0.3",
+    "@mdx-js/rollup": "npm:@mdx-js/rollup@^3.1.1",
+    "@tailwindcss/vite": "npm:@tailwindcss/vite@^4.3.3",
+    "@tanstack/devtools-vite": "npm:@tanstack/devtools-vite@^0.8.5",
+    "@tanstack/react-devtools": "npm:@tanstack/react-devtools@^0.10.12",
+    "@tanstack/react-router": "npm:@tanstack/react-router@^1.170.31",
+    "@tanstack/react-router-devtools": "npm:@tanstack/react-router-devtools@^1.167.1",
+    "@tanstack/react-start": "npm:@tanstack/react-start@^1.168.48",
+    "@types/react": "npm:@types/react@^19.2.18",
+    "@types/react-dom": "npm:@types/react-dom@^19.2.4",
+    "@vitejs/plugin-react": "npm:@vitejs/plugin-react@^6.1.0",
+    "clsx": "npm:clsx@^2.1.1",
+    "hast": "npm:@types/hast@^3.0.5",
+    "hast-util-to-string": "npm:hast-util-to-string@^3.0.1",
+    "hastscript": "npm:hastscript@^9.0.1",
+    "minisearch": "npm:minisearch@^7.2.0",
+    "react": "npm:react@^19.2.8",
+    "react-dom": "npm:react-dom@^19.2.8",
+    "rehype-autolink-headings": "npm:rehype-autolink-headings@^7.1.0",
+    "rehype-pretty-code": "npm:rehype-pretty-code@^0.14.5",
+    "rehype-slug": "npm:rehype-slug@^6.0.0",
+    "remark-frontmatter": "npm:remark-frontmatter@^5.0.0",
+    "remark-gfm": "npm:remark-gfm@^4.0.1",
+    "remark-mdx-frontmatter": "npm:remark-mdx-frontmatter@^5.2.0",
+    "shiki": "npm:shiki@^4.4.3",
+    "tailwind-merge": "npm:tailwind-merge@^3.6.0",
+    "tailwindcss": "npm:tailwindcss@^4.3.3",
+    "vite": "npm:vite@^8.2.1"
+  },
+  "fmt": {
+    "exclude": [
+      "src/routeTree.gen.ts",
+      "src/global.css",
+      "src/styles/docs.css",
+      "dist"
+    ]
+  },
+  "lint": {
+    "exclude": ["src/routeTree.gen.ts", "dist"],
+    "rules": {
+      "exclude": ["no-window"]
+    }
+  }
+}
