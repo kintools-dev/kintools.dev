@@ -4,7 +4,7 @@ const base =
   "inline-block rounded font-bold text-sm leading-5 px-5 py-2.5 transition-colors";
 
 const variantClasses = {
-  primary: "bg-brand1 text-white hover:bg-brand2",
+  primary: "bg-brand2 text-white hover:brightness-110",
   secondary: "border border-border text-text1 hover:border-text1",
 };
 

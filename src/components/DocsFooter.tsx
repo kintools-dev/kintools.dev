@@ -15,7 +15,7 @@ export function DocsFooter() {
         <p>
           Copyright &copy; 2026-present{" "}
           <a
-            className="text-text1 hover:text-brand1 active:text-brand2"
+            className="text-text1 underline hover:text-brand1 active:text-brand2"
             href="https://man-hoang.pages.dev"
             target="_blank"
           >

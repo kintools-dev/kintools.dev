@@ -23,7 +23,7 @@ export const Route = createFileRoute("/")({
       description,
       path: "/",
     }),
-  component: HomePage,
+  component: IndexPage,
 });
 
 function ShieldCheckIcon({ className }: { className?: string }) {
@@ -87,77 +87,79 @@ function OrbitMark({ className }: { className?: string }) {
   );
 }
 
-function HomePage() {
+function IndexPage() {
   return (
-    <Home>
-      <Hero
-        className="relative"
-        icon={<OrbitMark className="h-10 w-10 sm:h-14 sm:w-14" />}
-        title="kintools"
-        lede="Framework-agnostic TypeScript libraries."
-      >
-        <div aria-hidden className="hero-glow" />
-        <Button href="#libraries">Browse libraries</Button>
-        <Button
-          href="https://github.com/kintools-dev"
-          variant="secondary"
-          external
+    <>
+      <Home>
+        <Hero
+          className="relative"
+          icon={<OrbitMark className="h-10 w-10 sm:h-14 sm:w-14" />}
+          title="kintools"
+          lede="Framework-agnostic TypeScript libraries."
         >
-          GitHub
-        </Button>
-      </Hero>
+          <div aria-hidden className="hero-glow" />
+          <Button href="#libraries">Browse libraries</Button>
+          <Button
+            href="https://github.com/kintools-dev"
+            variant="secondary"
+            external
+          >
+            GitHub
+          </Button>
+        </Hero>
 
-      <Section>
-        <SectionHeader>Why kintools</SectionHeader>
-        <Grid cols={2}>
-          <Card className="reveal-on-scroll transition-shadow hover:shadow-popover">
-            <Principle
-              icon={<MinimizeIcon className="h-5 w-5" />}
-              title="Lean and fast"
-            >
-              Zero dependencies, checked bundle-size numbers, no dead weight.
-            </Principle>
-          </Card>
-          <Card className="reveal-on-scroll transition-shadow hover:shadow-popover">
-            <Principle
-              icon={<ShieldCheckIcon className="h-5 w-5" />}
-              title="Type-safe by design"
-            >
-              Paths and values are inferred from your data, not annotated by
-              hand.
-            </Principle>
-          </Card>
-          <Card className="reveal-on-scroll transition-shadow hover:shadow-popover">
-            <Principle
-              icon={<SlidersIcon className="h-5 w-5" />}
-              title="Opt-in complexity"
-            >
-              Start with the plain primitive. Extra features are there when you
-              reach for them, not before.
-            </Principle>
-          </Card>
-          <Card className="reveal-on-scroll transition-shadow hover:shadow-popover">
-            <Principle
-              icon={<UnlockIcon className="h-5 w-5" />}
-              title="No vendor lock-in"
-            >
-              MIT licensed, free forever. No paywalled tier to migrate away
-              from.
-            </Principle>
-          </Card>
-        </Grid>
-      </Section>
+        <Section>
+          <SectionHeader>Why kintools</SectionHeader>
+          <Grid cols={2}>
+            <Card className="reveal-on-scroll transition-shadow hover:shadow-popover">
+              <Principle
+                icon={<MinimizeIcon className="h-5 w-5" />}
+                title="Lean and fast"
+              >
+                Zero dependencies, checked bundle-size numbers, no dead weight.
+              </Principle>
+            </Card>
+            <Card className="reveal-on-scroll transition-shadow hover:shadow-popover">
+              <Principle
+                icon={<ShieldCheckIcon className="h-5 w-5" />}
+                title="Type-safe by design"
+              >
+                Paths and values are inferred from your data, not annotated by
+                hand.
+              </Principle>
+            </Card>
+            <Card className="reveal-on-scroll transition-shadow hover:shadow-popover">
+              <Principle
+                icon={<SlidersIcon className="h-5 w-5" />}
+                title="Opt-in complexity"
+              >
+                Start with the plain primitive. Extra features are there when
+                you reach for them, not before.
+              </Principle>
+            </Card>
+            <Card className="reveal-on-scroll transition-shadow hover:shadow-popover">
+              <Principle
+                icon={<UnlockIcon className="h-5 w-5" />}
+                title="No vendor lock-in"
+              >
+                MIT licensed, free forever. No paywalled tier to migrate away
+                from.
+              </Principle>
+            </Card>
+          </Grid>
+        </Section>
 
-      <Section id="libraries">
-        <SectionHeader>Libraries</SectionHeader>
-        <Grid cols={2}>
-          {libraries.map((library) => (
-            <LibraryCard key={library.id} library={library} />
-          ))}
-        </Grid>
-      </Section>
+        <Section id="libraries">
+          <SectionHeader>Libraries</SectionHeader>
+          <Grid cols={2}>
+            {libraries.map((library) => (
+              <LibraryCard key={library.id} library={library} />
+            ))}
+          </Grid>
+        </Section>
+      </Home>
 
       <DocsFooter />
-    </Home>
+    </>
   );
 }

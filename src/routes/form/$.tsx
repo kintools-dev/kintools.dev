@@ -56,7 +56,7 @@ function FormDocContent({ slug }: { slug: string }) {
       <div className="lib-home min-h-full">
         <DocsHeader project="form" base="/form" nav={formNav} />
         <Content components={formComponents} />
-        <DocsFooter footer={formNav.footer} />
+        <DocsFooter />
       </div>
     );
   }

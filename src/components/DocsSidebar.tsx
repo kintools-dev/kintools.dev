@@ -48,8 +48,8 @@ export function DocsSidebar({
                     to={base + normalize(item.link)}
                     onClick={closeMenu}
                     className={cn(
-                      "block py-1 text-sm no-underline hover:text-brand1",
-                      isActive ? "font-semibold text-brand1" : "text-text2",
+                      "block py-1 text-sm no-underline hover:text-brand2",
+                      isActive ? "font-semibold text-brand2" : "text-text2",
                     )}
                   >
                     {item.text}

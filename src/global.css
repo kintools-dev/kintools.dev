@@ -38,6 +38,9 @@ body {
 	@apply text-text1 scrollbar-gutter-stable;
 }
 
+main {
+	@apply pb-32;
+}
 strong,
 th {
 	@apply font-medium;

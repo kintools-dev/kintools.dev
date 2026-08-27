@@ -112,9 +112,9 @@ export function DocsToc({
             <a
               href={`#${item.id}`}
               className={cn(
-                "block py-1 text-sm no-underline hover:text-brand1",
+                "block py-1 text-sm no-underline hover:text-brand2",
                 item.level === 3 && "pl-4",
-                activeId === item.id ? "text-brand1" : "text-text2",
+                activeId === item.id ? "text-brand2" : "text-text2",
               )}
             >
               {item.text}

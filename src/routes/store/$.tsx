@@ -56,7 +56,7 @@ function StoreDocLayout({ slug }: { slug: string }) {
       <div className="lib-home min-h-full">
         <DocsHeader project="store" base="/store" nav={storeNav} />
         <Content components={storeComponents} />
-        <DocsFooter footer={storeNav.footer} />
+        <DocsFooter />
       </div>
     );
   }
