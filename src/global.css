@@ -17,8 +17,8 @@
 	--color-brand1: #059669;
 	--color-brand2: #047857;
 	--color-code-bg: #f6f7f9;
-	--color-code-inline-bg: #ecfdf5;
-	--color-code-inline-text: #065f46;
+	--color-code-inline-bg: #f1f2f4;
+	--color-code-inline-text: #a3195b;
 
 	/* A second accent, distinct from --color-brand1, used only on the root
 	   homepage to tell the Kin Store card/badges apart from Kin Form's
@@ -44,6 +44,64 @@ main {
 strong,
 th {
 	@apply font-medium;
+}
+
+/* Base styling for markdown-rendered content. These are deliberately
+   unscoped: the same prose primitives (lists, inline code, code blocks)
+   appear on the library homepages as well as the docs pages, so they
+   belong here rather than in docs.css. Selectors scoped to `.docs` live
+   in docs.css. */
+@layer base {
+	pre[data-theme] span {
+		color: var(--shiki-light);
+	}
+
+	ul,
+	ol {
+		@apply pl-6 list-disc;
+	}
+
+	li {
+		@apply mb-1;
+	}
+
+	pre {
+		@apply my-4 rounded-lg bg-code-bg py-4 overflow-x-auto;
+	}
+
+	code {
+		font-size: 0.9em;
+		@apply rounded bg-code-inline-bg px-1.5 py-px text-code-inline-text;
+	}
+
+	:not(pre)>code {
+		@apply whitespace-nowrap border border-border;
+	}
+
+	pre>code {
+		@apply border-0 bg-transparent p-0 text-text1 text-sm;
+	}
+
+	/* rehype-pretty-code (vite.config.ts) wraps each source line in a
+	`[data-line]` span and, with `grid: true`, lays `code` out as a CSS grid
+	so every line's row spans the widest line in the block. Padding lives on
+	the line itself (not on `pre`) so a `[data-highlighted-line]` background
+	can bleed to the block's full, possibly horizontally-scrolled, width. */
+	pre [data-line] {
+		@apply block px-4 border-l-2 border-transparent;
+	}
+
+	pre [data-highlighted-line] {
+		@apply border-brand1 bg-brand1/9;
+	}
+
+	.code-group-panel pre {
+		@apply m-0 rounded-none;
+	}
+
+	.lib-home figure>pre {
+		@apply m-0;
+	}
 }
 
 /* Decorative gradient glow behind the homepage hero. Pure CSS, no canvas/JS:

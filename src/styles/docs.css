@@ -1,10 +1,6 @@
 @reference "../global.css";
 
 @layer base {
-	pre[data-theme] span {
-		color: var(--shiki-light);
-	}
-
 	.docs h1 {
 		@apply relative mb-4 text-4xl font-semibold;
 	}
@@ -51,15 +47,6 @@
 		@apply text-brand2;
 	}
 
-	ul,
-	ol {
-		@apply pl-6 list-disc;
-	}
-
-	li {
-		@apply mb-1;
-	}
-
 	.docs table {
 		@apply my-4 w-full border-collapse;
 	}
@@ -67,44 +54,6 @@
 	.docs th,
 	.docs td {
 		@apply border border-border px-3 py-1.5 text-left;
-	}
-
-	pre {
-		@apply my-4 rounded-lg bg-code-bg py-4 overflow-x-auto;
-	}
-
-	code {
-		font-size: 0.9em;
-		@apply rounded bg-code-inline-bg px-1.5 py-px text-code-inline-text;
-	}
-
-	:not(pre)>code {
-		@apply whitespace-nowrap;
-	}
-
-	pre>code {
-		@apply bg-transparent p-0 text-text1 text-sm;
-	}
-
-	/* rehype-pretty-code (vite.config.ts) wraps each source line in a
-	`[data-line]` span and, with `grid: true`, lays `code` out as a CSS grid
-	so every line's row spans the widest line in the block. Padding lives on
-	the line itself (not on `pre`) so a `[data-highlighted-line]` background
-	can bleed to the block's full, possibly horizontally-scrolled, width. */
-	pre [data-line] {
-		@apply block px-4 border-l-2 border-transparent;
-	}
-
-	pre [data-highlighted-line] {
-		@apply border-brand1 bg-brand1/9;
-	}
-
-	.code-group-panel pre {
-		@apply m-0 rounded-none;
-	}
-
-	.lib-home figure>pre {
-		@apply m-0;
 	}
 }
 
