@@ -4,7 +4,7 @@ const base =
   "inline-block rounded font-bold text-sm leading-5 px-5 py-2.5 transition-colors";
 
 const variantClasses = {
-  primary: "bg-brand2 text-white hover:brightness-110",
+  primary: "bg-brand2 text-bg hover:brightness-110",
   secondary: "border border-border text-text1 hover:border-text1",
 };
 
@@ -23,7 +23,7 @@ export function Button({
     <a
       href={href}
       className={`${base} ${variantClasses[variant]}`}
-      {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
+      {...(external ? { target: "_blank" } : {})}
     >
       {children}
     </a>

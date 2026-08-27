@@ -38,7 +38,7 @@ export function SideBySide({ children }: { children?: React.ReactNode }) {
         type="button"
         className={cn(
           "z-20 cursor-pointer rounded-md px-4 py-1.5",
-          "bg-brand1 text-sm font-medium text-white hover:bg-brand2",
+          "bg-brand1 text-sm font-medium text-bg hover:bg-brand2",
           isFullscreen ? "fixed top-2 right-5" : "absolute top-1 right-1",
         )}
         aria-label="Toggle fullscreen"

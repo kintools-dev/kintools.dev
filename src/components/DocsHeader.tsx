@@ -4,6 +4,7 @@ import type { NavConfig } from "#/content/nav-types.ts";
 import { cn } from "#/lib/cn.ts";
 import { DocsSearch } from "./shared/DocsSearch.tsx";
 import { LibrarySwitcher } from "./shared/LibrarySwitcher.tsx";
+import { ThemeToggle } from "./shared/ThemeToggle.tsx";
 
 function normalize(link: string): string {
   return link.length > 1 && link.endsWith("/") ? link.slice(0, -1) : link;
@@ -136,7 +137,7 @@ export function DocsHeader({
           </Link>
           <LibrarySwitcher currentId={project} />
         </div>
-        <div className="flex items-center gap-3 sm:gap-6">
+        <div className="flex items-center gap-3">
           <DocsSearch project={project} />
           <nav className="hidden gap-5 text-sm lg:flex">
             {nav.nav.map((item) => (
@@ -148,6 +149,9 @@ export function DocsHeader({
               />
             ))}
           </nav>
+          <hr className="border-t-0 h-4 w-px bg-border"/>
+          <ThemeToggle />
+          <hr className="border-t-0 h-4 w-px bg-border"/>
           {githubLink && (
             <a
               href={githubLink}

@@ -95,11 +95,12 @@ const config = defineConfig({
         [
           rehypePrettyCode,
           {
-            // Dual-theme (CSS variable) mode: tokens get
-            // `color: var(--shiki-light)` instead of a literal hex color, so
-            // a `dark` theme can be added later (plus one CSS rule to swap
-            // which variable wins) with no renderer changes.
-            theme: { light: poimandresLight },
+            // Dual-theme (CSS variable) mode: every token span carries both
+            // `--shiki-light` and `--shiki-dark`, and CSS in global.css
+            // swaps which one wins with the active site theme. `poimandres`
+            // is Shiki's bundled dark theme; `poimandresLight` is the
+            // hand-tuned light counterpart loaded above.
+            theme: { light: poimandresLight, dark: "poimandres" },
             keepBackground: false,
             // Lays each line out as a CSS grid row sized to the widest line,
             // rather than relying on inline whitespace -- without it, a

@@ -80,8 +80,20 @@ export const Route = createRootRoute({
 
 function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
+        <script
+          // Resolves the theme before first paint so there's no
+          // light-to-dark flash: a saved choice from the header toggle
+          // (localStorage) wins, otherwise follow the OS preference.
+          // `themeStore` reads the result back and keeps `data-theme` in
+          // step from here on. `<html>` carries `suppressHydrationWarning`
+          // because this attribute is set outside React's render.
+          dangerouslySetInnerHTML={{
+            __html:
+              '(function(){try{var t=localStorage.getItem("kintools:theme");document.documentElement.dataset.theme=t==="light"||t==="dark"?t:(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");}catch(e){}})();',
+          }}
+        />
         <HeadContent />
       </head>
       <body>

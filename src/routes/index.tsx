@@ -10,6 +10,7 @@ import { LibraryCard } from "#/components/shared/LibraryCard.tsx";
 import { Principle } from "#/components/shared/Principle.tsx";
 import { Section } from "#/components/shared/Section.tsx";
 import { SectionHeader } from "#/components/shared/SectionHeader.tsx";
+import { ThemeToggle } from "#/components/shared/ThemeToggle.tsx";
 import { libraries } from "#/content/libraries.ts";
 import { seoHead } from "#/lib/seo.ts";
 
@@ -90,6 +91,7 @@ function OrbitMark({ className }: { className?: string }) {
 function IndexPage() {
   return (
     <>
+      <ThemeToggle className="fixed top-3 right-3 z-50" />
       <Home>
         <Hero
           className="relative"

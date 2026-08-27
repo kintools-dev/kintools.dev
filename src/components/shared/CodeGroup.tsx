@@ -1,6 +1,7 @@
 import type * as React from "react";
 import { Children, isValidElement, useState } from "react";
-import { frameworks, useFramework } from "./framework-store.ts";
+import { useStore } from "@kintools/store-react";
+import { frameworks, frameworkStore } from "./framework-store.ts";
 import { useSideBySideFullscreen } from "./side-by-side-context.ts";
 
 // Renders a tabbed group of `<CodeGroupItem label="...">` fenced code blocks
@@ -21,7 +22,7 @@ export function CodeGroup({ children }: { children?: React.ReactNode }) {
   const isFrameworkSynced = labels.length > 0 &&
     labels.every((label) => frameworks.some((fw) => fw.label === label));
 
-  const [framework, setFramework] = useFramework();
+  const framework = useStore(frameworkStore);
   const [localActive, setLocalActive] = useState(0);
   const sideBySideFullscreen = useSideBySideFullscreen();
 
@@ -35,7 +36,7 @@ export function CodeGroup({ children }: { children?: React.ReactNode }) {
   function selectTab(index: number): void {
     if (isFrameworkSynced) {
       const fw = frameworks.find((f) => f.label === labels[index]);
-      if (fw) setFramework(fw.id);
+      if (fw) frameworkStore.set(fw.id);
     } else {
       setLocalActive(index);
     }

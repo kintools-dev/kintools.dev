@@ -1,9 +1,10 @@
-import { frameworks, useFramework } from "./framework-store.ts";
+import { useStore } from "@kintools/store-react";
+import { frameworks, frameworkStore } from "./framework-store.ts";
 
 // Rendered by DocsLayout itself (form docs only), not invoked from markdown
 // -- the original site mounted this in the sidebar via Layout.vue.
 export function FrameworkSwitcher() {
-  const [framework, setFramework] = useFramework();
+  const framework = useStore(frameworkStore);
 
   return (
     <div className="mb-4 flex flex-col gap-2 border-b border-border pb-4">
@@ -17,7 +18,9 @@ export function FrameworkSwitcher() {
         id="framework-select"
         value={framework}
         onChange={(event) =>
-          setFramework(event.target.value as (typeof frameworks)[number]["id"])}
+          frameworkStore.set(
+            event.target.value as (typeof frameworks)[number]["id"],
+          )}
         className="h-8 w-full rounded-md border border-border bg-bg-soft px-2.5 text-text1"
       >
         {frameworks.map((fw) => (

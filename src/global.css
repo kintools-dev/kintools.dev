@@ -29,6 +29,39 @@
 	--shadow-modal: 0 16px 48px rgba(0, 0, 0, 0.2);
 }
 
+/* Dark palette. Two selectors carry the same values, kept in sync by hand:
+   the media query is the no-JS / no-stored-choice path (follow the OS), and
+   `[data-theme="dark"]` is what the header toggle sets. Both are outside
+   `@layer theme` so they win over the light defaults `@theme` emits there.
+   `:root[data-theme="light"]` needs no palette of its own -- the media
+   query already excludes it, so the light defaults apply. */
+:root {
+	color-scheme: light;
+}
+
+:root[data-theme="light"] {
+	color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+	color-scheme: dark;
+	--color-bg: #18181b;
+	--color-bg-soft: #27272a;
+	--color-bg-elv: #27272a;
+	--color-border: #3f3f46;
+	--color-text1: #f4f4f5;
+	--color-text2: #a1a1aa;
+	--color-text3: #8b8b93;
+	--color-brand1: #34d399;
+	--color-brand2: #10b981;
+	--color-code-bg: #202023;
+	--color-code-inline-bg: #2e2e33;
+	--color-code-inline-text: #f9a8d4;
+	--color-accent-store: #818cf8;
+	--shadow-popover: 0 4px 16px rgba(0, 0, 0, 0.5);
+	--shadow-modal: 0 16px 48px rgba(0, 0, 0, 0.7);
+}
+
 html,
 body {
 	@apply min-h-dvh;
@@ -52,8 +85,22 @@ th {
    belong here rather than in docs.css. Selectors scoped to `.docs` live
    in docs.css. */
 @layer base {
+	/* rehype-pretty-code runs in dual-theme mode (vite.config.ts), so each
+	token span carries both `--shiki-light` and `--shiki-dark`. Pick the one
+	that matches the active theme; the base code color comes from the
+	`pre > code` rule below, which is already token-driven. */
 	pre[data-theme] span {
 		color: var(--shiki-light);
+	}
+
+	:root[data-theme="dark"] pre[data-theme] span {
+		color: var(--shiki-dark);
+	}
+
+	@media (prefers-color-scheme: dark) {
+		:root:not([data-theme="light"]) pre[data-theme] span {
+			color: var(--shiki-dark);
+		}
 	}
 
 	ul,
