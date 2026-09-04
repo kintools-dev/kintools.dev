@@ -77,7 +77,7 @@ const rows: Row[] = [
       kin: (
         <>
           Via <code>toSchemaValidator()</code> from{" "}
-          <code>@kin-form/validators</code> package.
+          <code>@kintools/form-validators</code> package.
         </>
       ),
       rhf: (
