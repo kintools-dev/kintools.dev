@@ -58,7 +58,7 @@ export function LibrarySwitcher(
       <Tooltip content="Switch library">
         <DropdownMenuTrigger
           label="Switch library"
-          className="flex h-6 w-6 items-center justify-center rounded text-text3 hover:bg-bg-soft hover:text-brand1"
+          className="flex h-6 w-6 items-center justify-center rounded text-text3 hover:bg-bg-hover hover:text-brand1"
         >
           <svg
             width="20"

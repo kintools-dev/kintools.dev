@@ -144,7 +144,7 @@ export function DocsHeader({
               target="_blank"
               rel="noreferrer"
               aria-label="GitHub"
-              className="flex h-8 w-8 items-center justify-center rounded text-text2 hover:bg-bg-soft hover:text-brand1"
+              className="flex h-8 w-8 items-center justify-center rounded text-text2 hover:bg-bg-hover hover:text-brand1"
             >
               <GitHubIcon className="h-5 w-5" />
             </a>
@@ -152,7 +152,7 @@ export function DocsHeader({
           <DropdownMenu className="lg:hidden">
             <DropdownMenuTrigger
               label="Menu"
-              className="flex h-8 w-8 items-center justify-center rounded text-text2 hover:bg-bg-soft"
+              className="flex h-8 w-8 items-center justify-center rounded text-text2 hover:bg-bg-hover"
             >
               <MenuIcon className="h-5 w-5" />
             </DropdownMenuTrigger>

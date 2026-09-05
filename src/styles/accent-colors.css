@@ -1,0 +1,144 @@
+/* Kin Form's brand green as a full Radix-style 12-step scale (solid +
+   alpha, light + dark), generated at https://www.radix-ui.com/colors/custom
+   from the existing --color-brand1 green (#059669, preserved exactly as
+   accent-9). Referenced from global.css's --color-brand1/--color-brand2.
+   Selectors already match this site's dark/light class convention. */
+:root, .light, .light-theme {
+  --accent-1: #fbfefc;
+  --accent-2: #f4fbf7;
+  --accent-3: #e4f7ed;
+  --accent-4: #d3f1e2;
+  --accent-5: #c1e9d5;
+  --accent-6: #a9dec4;
+  --accent-7: #89cfae;
+  --accent-8: #55b98f;
+  --accent-9: #059669;
+  --accent-10: #008a5b;
+  --accent-11: #008156;
+  --accent-12: #193b2c;
+
+  --accent-a1: #00c04004;
+  --accent-a2: #00a3460b;
+  --accent-a3: #00b4551b;
+  --accent-a4: #00ae572c;
+  --accent-a5: #00a5533e;
+  --accent-a6: #009e5156;
+  --accent-a7: #00985076;
+  --accent-a8: #009657aa;
+  --accent-a9: #009466fa;
+  --accent-a10: #008a5b;
+  --accent-a11: #008156;
+  --accent-a12: #002615e6;
+
+  --accent-contrast: #fff;
+  --accent-surface: #f1faf5cc;
+  --accent-indicator: #059669;
+  --accent-track: #059669;
+}
+
+@supports (color: color(display-p3 1 1 1)) {
+  @media (color-gamut: p3) {
+    :root, .light, .light-theme {
+      --accent-1: oklch(99.4% 0.0043 163.2);
+      --accent-2: oklch(98.2% 0.0094 163.2);
+      --accent-3: oklch(95.9% 0.0235 163.2);
+      --accent-4: oklch(93.3% 0.0372 163.2);
+      --accent-5: oklch(90% 0.0506 163.2);
+      --accent-6: oklch(85.7% 0.0656 163.2);
+      --accent-7: oklch(79.8% 0.0853 163.2);
+      --accent-8: oklch(71.5% 0.1141 163.2);
+      --accent-9: oklch(59.6% 0.1274 163.2);
+      --accent-10: oklch(55.3% 0.1361 163.2);
+      --accent-11: oklch(52.9% 0.1274 163.2);
+      --accent-12: oklch(32.2% 0.0479 163.2);
+
+      --accent-a1: color(display-p3 0.0235 0.6745 0.0235 / 0.012);
+      --accent-a2: color(display-p3 0.0235 0.6118 0.2196 / 0.04);
+      --accent-a3: color(display-p3 0.0118 0.6157 0.2706 / 0.091);
+      --accent-a4: color(display-p3 0.0078 0.6078 0.2706 / 0.15);
+      --accent-a5: color(display-p3 0.0039 0.5765 0.2431 / 0.212);
+      --accent-a6: color(display-p3 0.0039 0.549 0.2431 / 0.295);
+      --accent-a7: color(display-p3 0 0.5098 0.2275 / 0.4);
+      --accent-a8: color(display-p3 0 0.498 0.2392 / 0.561);
+      --accent-a9: color(display-p3 0 0.4314 0.2196 / 0.738);
+      --accent-a10: color(display-p3 0 0.3882 0.1804 / 0.765);
+      --accent-a11: color(display-p3 0 0.3569 0.1647 / 0.781);
+      --accent-a12: color(display-p3 0 0.1098 0.051 / 0.867);
+
+      --accent-contrast: #fff;
+      --accent-surface: color(display-p3 0.9529 0.9804 0.9608 / 0.8);
+      --accent-indicator: oklch(59.6% 0.1274 163.2);
+      --accent-track: oklch(59.6% 0.1274 163.2);
+    }
+  }
+}
+
+.dark, .dark-theme {
+  --accent-1: #0c130f;
+  --accent-2: #121b16;
+  --accent-3: #122d21;
+  --accent-4: #103b2a;
+  --accent-5: #154934;
+  --accent-6: #1e5740;
+  --accent-7: #26684d;
+  --accent-8: #2c7c5c;
+  --accent-9: #059669;
+  --accent-10: #348363;
+  --accent-11: #5ed1a1;
+  --accent-12: #aef1d0;
+
+  --accent-a1: #00bb0003;
+  --accent-a2: #29f9850b;
+  --accent-a3: #1aff991e;
+  --accent-a4: #0cff9f2d;
+  --accent-a5: #22ffa63c;
+  --accent-a6: #3effb14b;
+  --accent-a7: #4afdb45e;
+  --accent-a8: #4dffb873;
+  --accent-a9: #00ffae8f;
+  --accent-a10: #5afdbb7b;
+  --accent-a11: #71ffc4ce;
+  --accent-a12: #b8ffdcf0;
+
+  --accent-contrast: #fff;
+  --accent-surface: #13251b80;
+  --accent-indicator: #059669;
+  --accent-track: #059669;
+}
+
+@supports (color: color(display-p3 1 1 1)) {
+  @media (color-gamut: p3) {
+    .dark, .dark-theme {
+      --accent-1: oklch(17.8% 0.013 163.2);
+      --accent-2: oklch(21.2% 0.0165 163.2);
+      --accent-3: oklch(27.1% 0.0396 163.2);
+      --accent-4: oklch(31.7% 0.0572 163.2);
+      --accent-5: oklch(36.4% 0.0654 163.2);
+      --accent-6: oklch(41.3% 0.0717 163.2);
+      --accent-7: oklch(46.8% 0.0805 163.2);
+      --accent-8: oklch(53% 0.0935 163.2);
+      --accent-9: oklch(59.6% 0.1274 163.2);
+      --accent-10: oklch(55.3% 0.0935 163.2);
+      --accent-11: oklch(78.1% 0.1274 163.2);
+      --accent-12: oklch(90.4% 0.0812 163.2);
+
+      --accent-a1: color(display-p3 0 0.9412 0 / 0.009);
+      --accent-a2: color(display-p3 0.3412 0.9804 0.5255 / 0.043);
+      --accent-a3: color(display-p3 0.3451 0.9961 0.6549 / 0.114);
+      --accent-a4: color(display-p3 0.3412 0.9961 0.6588 / 0.173);
+      --accent-a5: color(display-p3 0.3882 1 0.6784 / 0.232);
+      --accent-a6: color(display-p3 0.4588 1 0.7294 / 0.29);
+      --accent-a7: color(display-p3 0.502 1 0.7412 / 0.362);
+      --accent-a8: color(display-p3 0.5137 1 0.7529 / 0.442);
+      --accent-a9: color(display-p3 0.4196 0.9961 0.7137 / 0.551);
+      --accent-a10: color(display-p3 0.5451 1 0.7686 / 0.471);
+      --accent-a11: color(display-p3 0.6 1 0.7922 / 0.795);
+      --accent-a12: color(display-p3 0.7843 1 0.8784 / 0.933);
+
+      --accent-contrast: #fff;
+      --accent-surface: color(display-p3 0.0863 0.1412 0.1098 / 0.5);
+      --accent-indicator: oklch(59.6% 0.1274 163.2);
+      --accent-track: oklch(59.6% 0.1274 163.2);
+    }
+  }
+}

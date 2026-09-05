@@ -86,15 +86,21 @@ function RootLayout({ children }: { children: React.ReactNode }) {
           // Resolves the theme before first paint so there's no
           // light-to-dark flash: a saved choice from the header toggle
           // (localStorage) wins, otherwise follow the OS preference.
-          // `themeStore` reads the result back and keeps `data-theme` in
-          // step from here on. `<html>` carries `suppressHydrationWarning`
-          // because this attribute is set outside React's render.
+          // `themeStore` reads the result back and keeps the `dark`/`light`
+          // class in step from here on. `<html>` carries
+          // `suppressHydrationWarning` because this class is set outside
+          // React's render.
           dangerouslySetInnerHTML={{
             __html:
-              '(function(){try{var t=localStorage.getItem("kintools:theme");document.documentElement.dataset.theme=t==="light"||t==="dark"?t:(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");}catch(e){}})();',
+              '(function(){try{var t=localStorage.getItem("kintools:theme");var d=t==="dark"||(t!=="light"&&matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.classList.add(d?"dark":"light");}catch(e){}})();',
           }}
         />
-        <script defer src="https://cloud.umami.is/script.js" data-website-id="e3d4bf33-13ad-4a9a-bb17-b31df425c6b7"></script>
+        <script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="e3d4bf33-13ad-4a9a-bb17-b31df425c6b7"
+        >
+        </script>
         <HeadContent />
       </head>
       <body>

@@ -124,7 +124,7 @@ export function DropdownMenuContent({
   );
 }
 
-const itemBase = "hover:bg-bg-soft";
+const itemBase = "hover:bg-bg-hover";
 
 /**
  * One menu entry: an `<a href>` by default, closing the menu (and calling

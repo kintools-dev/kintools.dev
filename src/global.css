@@ -1,4 +1,9 @@
 @import "tailwindcss";
+@import "@radix-ui/colors/gray.css";
+@import "@radix-ui/colors/gray-alpha.css";
+@import "@radix-ui/colors/gray-dark.css";
+@import "@radix-ui/colors/gray-dark-alpha.css";
+@import "./styles/accent-colors.css";
 
 /* The form/docs and store/docs sibling repos live one level up, outside
    this project's root, so Tailwind's automatic source detection never
@@ -7,15 +12,6 @@
 @source "../../store/docs";
 
 @theme {
-	--color-bg: #ffffff;
-	--color-bg-soft: #f6f7f9;
-	--color-bg-elv: #ffffff;
-	--color-border: #d1d2d3;
-	--color-text1: #1c1d1f;
-	--color-text2: #52525b;
-	--color-text3: #6b7280;
-	--color-brand1: #059669;
-	--color-brand2: #047857;
 	--color-code-bg: #f6f7f9;
 	--color-code-inline-bg: #f1f2f4;
 	--color-code-inline-text: #a3195b;
@@ -29,31 +25,65 @@
 	--shadow-modal: 0 16px 48px rgba(0, 0, 0, 0.2);
 }
 
-/* Dark palette. Two selectors carry the same values, kept in sync by hand:
-   the media query is the no-JS / no-stored-choice path (follow the OS), and
-   `[data-theme="dark"]` is what the header toggle sets. Both are outside
-   `@layer theme` so they win over the light defaults `@theme` emits there.
-   `:root[data-theme="light"]` needs no palette of its own -- the media
-   query already excludes it, so the light defaults apply. */
+/* brand1/brand2's text-oriented steps from accent-colors.css's generated
+   scale (11/12: Radix's own "text" tier, contrast-tuned per theme already
+   -- the old dark brand1, #34d399, existed only to be legible against a
+   dark page the same way accent-11 already is here) rather than the two
+   flat hex values these replace. `inline` for the same reason as the gray
+   tokens above: keep these as live var() references so they still follow
+   whichever theme is active. */
+@theme inline {
+	--color-brand1: var(--accent-11);
+	--color-brand2: var(--accent-12);
+}
+
+/* Neutral scale from @radix-ui/colors' gray/gray-dark, imported above: 12
+   solid steps, each perceptually distinct by design -- unlike the
+   hand-picked hex values these replace, two of which turned out identical
+   in dark mode and made a dropdown item's hover invisible. `inline` keeps
+   these as live var() references in Tailwind's generated utilities (rather
+   than resolving them once at build time), so they still follow whichever
+   theme is active.
+
+   Surfaces/text/borders use the solid scale, picked in increasing "distance
+   from the page" order so every role stays visually distinct: 1 (page) < 3
+   (component surfaces) < 4 (elevated/floating surfaces) < 7 (borders) < 9
+   (muted text) < 11 (secondary text) < 12 (primary text).
+
+   Hover/active use the *alpha* scale instead of another solid step: a
+   solid color only avoids collisions with the specific surfaces it was
+   picked against, but an alpha overlay composites correctly over any
+   surface it happens to land on, including ones that don't exist yet. */
+@theme inline {
+	--color-bg: var(--gray-1);
+	--color-bg-soft: var(--gray-3);
+	--color-bg-elv: var(--gray-4);
+	--color-bg-hover: var(--gray-a4);
+	--color-bg-active: var(--gray-a5);
+	--color-border: var(--gray-7);
+	--color-text3: var(--gray-9);
+	--color-text2: var(--gray-11);
+	--color-text1: var(--gray-12);
+}
+
+/* @radix-ui/colors scopes its dark values under .dark/.dark-theme classes
+   (see gray-dark.css/gray-dark-alpha.css), so the site's light/dark toggle
+   (ThemeToggle, theme-store.ts) sets a `dark`/`light` class on <html>
+   instead of the data-theme attribute it used before -- that's what these
+   two selectors, and the imported Radix files, actually key off. */
 :root {
 	color-scheme: light;
 }
 
-:root[data-theme="light"] {
+.light {
 	color-scheme: light;
 }
 
-:root[data-theme="dark"] {
+/* Kintools-specific colors (not part of the Radix gray/accent scales) for
+   dark mode. Outside `@layer theme` so this wins over the light defaults
+   `@theme`/`@theme inline` emit there. */
+.dark {
 	color-scheme: dark;
-	--color-bg: #18181b;
-	--color-bg-soft: #27272a;
-	--color-bg-elv: #2e2e33;
-	--color-border: #3f3f46;
-	--color-text1: #f4f4f5;
-	--color-text2: #a1a1aa;
-	--color-text3: #8b8b93;
-	--color-brand1: #34d399;
-	--color-brand2: #10b981;
 	--color-code-bg: #202023;
 	--color-code-inline-bg: #2e2e33;
 	--color-code-inline-text: #f9a8d4;
@@ -93,12 +123,12 @@ th {
 		color: var(--shiki-light);
 	}
 
-	:root[data-theme="dark"] pre[data-theme] span {
+	.dark pre[data-theme] span {
 		color: var(--shiki-dark);
 	}
 
 	@media (prefers-color-scheme: dark) {
-		:root:not([data-theme="light"]) pre[data-theme] span {
+		:root:not(.light) pre[data-theme] span {
 			color: var(--shiki-dark);
 		}
 	}

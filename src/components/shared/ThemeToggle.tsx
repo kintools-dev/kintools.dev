@@ -37,9 +37,9 @@ function MoonIcon({ className }: { className?: string }) {
  * A header button that switches the site between its light and dark themes.
  *
  * The choice is saved to `localStorage` and mirrored onto
- * `document.documentElement`'s `data-theme`, which an inline script in the
- * document head has already applied once before first paint. With no saved
- * choice the site follows the OS preference at load time.
+ * `document.documentElement`'s `dark`/`light` class, which an inline script
+ * in the document head has already applied once before first paint. With no
+ * saved choice the site follows the OS preference at load time.
  */
 export function ThemeToggle({ className }: { className?: string }) {
   const theme = useStore(themeStore);
@@ -59,7 +59,7 @@ export function ThemeToggle({ className }: { className?: string }) {
         ? "Switch to light theme"
         : "Switch to dark theme"}
       className={cn(
-        "flex h-8 w-8 items-center justify-center rounded text-text2 hover:bg-bg-soft hover:text-brand1",
+        "flex h-8 w-8 items-center justify-center rounded text-text2 hover:bg-bg-hover hover:text-brand1",
         className,
       )}
     >

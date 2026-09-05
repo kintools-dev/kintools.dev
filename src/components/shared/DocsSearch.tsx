@@ -155,7 +155,7 @@ export function DocsSearch({ project }: { project: "form" | "store" }) {
                       onMouseEnter={() => setActiveIndex(index)}
                       className={cn(
                         "flex w-full flex-col items-start gap-0.5 px-3 py-2 text-left",
-                        index === activeIndex ? "bg-bg-soft" : "",
+                        index === activeIndex ? "bg-bg-active" : "",
                       )}
                     >
                       <span className="text-sm text-text1">

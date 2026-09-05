@@ -33,6 +33,7 @@
     "@kintools/store-react": "jsr:@kintools/store-react@^0.3.1",
     "@deno/vite-plugin": "npm:@deno/vite-plugin@^2.0.3",
     "@mdx-js/rollup": "npm:@mdx-js/rollup@^3.1.1",
+    "@radix-ui/colors": "npm:@radix-ui/colors@^3.0.0",
     "@tailwindcss/vite": "npm:@tailwindcss/vite@^4.3.3",
     "@tanstack/devtools-vite": "npm:@tanstack/devtools-vite@^0.8.5",
     "@tanstack/react-devtools": "npm:@tanstack/react-devtools@^0.10.12",
