@@ -156,14 +156,14 @@ export function DocsHeader({
             >
               <MenuIcon className="h-5 w-5" />
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="flex w-48 flex-col gap-1 p-2 text-sm">
+            <DropdownMenuContent className="flex w-48 flex-col gap-1 p-1 text-sm">
               {nav.nav.map((item) => (
                 <DropdownMenuItem key={item.text} asChild>
                   <NavLinkItem
                     base={base}
                     link={item.link}
                     text={item.text}
-                    className="rounded px-2 py-1.5 hover:bg-bg-soft"
+                    className="rounded px-2 py-1.5"
                   />
                 </DropdownMenuItem>
               ))}

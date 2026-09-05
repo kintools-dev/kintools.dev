@@ -124,12 +124,14 @@ export function DropdownMenuContent({
   );
 }
 
+const itemBase = "hover:bg-bg-soft";
+
 /**
  * One menu entry: an `<a href>` by default, closing the menu (and calling
  * `onSelect`) when clicked. Pass `asChild` with a single child element (a
  * router `<Link>`, `NavLinkItem`, anything already rendering its own
- * interactive element) to apply that same role/click/className handling to
- * it instead of rendering an anchor of its own.
+ * interactive element) to apply that same role/click/className/hover
+ * handling to it instead of rendering an anchor of its own.
  */
 export function DropdownMenuItem({
   href,
@@ -164,7 +166,7 @@ export function DropdownMenuItem({
         onSelect?.();
         setOpen(false);
       },
-      className: cn(className, children.props.className),
+      className: cn(itemBase, className, children.props.className),
     });
   }
 
@@ -176,7 +178,7 @@ export function DropdownMenuItem({
         onSelect?.();
         setOpen(false);
       }}
-      className={className}
+      className={cn(itemBase, className)}
       {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
     >
       {children}

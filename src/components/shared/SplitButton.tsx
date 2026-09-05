@@ -84,14 +84,14 @@ export function SplitButton({
       >
         <ChevronIcon className="h-4 w-4" />
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="flex w-32 flex-col gap-1 p-2 text-sm">
+      <DropdownMenuContent className="flex w-32 flex-col gap-1 p-1 text-sm">
         {options.map((option) => (
           <DropdownMenuItem
             key={option.label}
             href={option.href}
             external
             onSelect={() => onSelect?.(option)}
-            className="rounded px-2 py-1.5 text-text1 no-underline hover:bg-bg-soft"
+            className="rounded px-2 py-1.5 text-text1 no-underline"
           >
             {option.label}
           </DropdownMenuItem>

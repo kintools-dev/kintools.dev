@@ -11,8 +11,7 @@ import {
   useDropdownMenu,
 } from "#/components/shared/DropdownMenu.tsx";
 
-const menuLinkClassName =
-  "block px-3 py-1.5 text-sm text-text2 no-underline hover:bg-bg-soft hover:text-brand1";
+const menuLinkClassName = "block px-3 py-1.5 text-sm text-text2 no-underline";
 
 function LibraryMenu({ currentId }: { currentId: "form" | "store" }) {
   const { open } = useDropdownMenu();
