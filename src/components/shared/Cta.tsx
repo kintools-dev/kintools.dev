@@ -14,7 +14,7 @@ export function Cta({
   return (
     <a
       href={href}
-      className="font-bold text-brand1 hover:text-brand2 hover:underline"
+      className="font-bold text-brand2 hover:underline"
       {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
     >
       {children}
