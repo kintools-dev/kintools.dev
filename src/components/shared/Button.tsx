@@ -9,7 +9,7 @@ const variantClasses = {
     "inline-block rounded px-5 py-2.5 bg-brand2 text-bg hover:brightness-110",
   secondary:
     "inline-block rounded px-5 py-2.5 border border-border text-text1 hover:border-text1",
-  text: "text-brand1 hover:text-brand2 underline-offset-2 hover:underline",
+  text: "text-brand2 underline-offset-2 hover:underline",
 };
 
 /**
