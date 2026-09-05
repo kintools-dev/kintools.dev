@@ -6,11 +6,11 @@ const bars: BarChartEntry[] = [
   {
     label: "Kin Form",
     full: "Kin Form (core + react)",
-    value: 5.0,
-    formatted: "5.0 KB",
+    value: 5.1,
+    formatted: "5.1 KB",
     highlight: true,
   },
-  { label: "React Hook Form", value: 13.0, formatted: "13.0 KB" },
+  { label: "React Hook Form", value: 13.7, formatted: "13.7 KB" },
   { label: "Formik", value: 13.9, formatted: "13.9 KB" },
   {
     label: "TanStack Form",
