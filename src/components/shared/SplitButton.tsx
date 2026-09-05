@@ -59,7 +59,7 @@ export function SplitButton({
       asChild
       variant={variant === "button" ? "secondary" : "text"}
       className={variant === "button" && hasOptions
-        ? "rounded-r-none border-r-0"
+        ? "rounded-r-none"
         : undefined}
     >
       <a href={href} target="_blank" rel="noreferrer">{label}</a>
