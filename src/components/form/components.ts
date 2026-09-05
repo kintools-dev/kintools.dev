@@ -10,6 +10,8 @@ import { Grid } from "#/components/shared/Grid.tsx";
 import { Hero } from "#/components/shared/Hero.tsx";
 import { Home } from "#/components/shared/Home.tsx";
 import { Lede } from "#/components/shared/Lede.tsx";
+import { PlaygroundButton } from "#/components/shared/PlaygroundButton.tsx";
+import { PlaygroundLink } from "#/components/shared/PlaygroundLink.tsx";
 import { Principle } from "#/components/shared/Principle.tsx";
 import { Prose } from "#/components/shared/Prose.tsx";
 import { Section } from "#/components/shared/Section.tsx";
@@ -40,6 +42,8 @@ export const formComponents = {
   FrameworkText,
   PerformanceCharts,
   PerformanceHighlight,
+  PlaygroundButton,
+  PlaygroundLink,
   Home,
   Hero,
   Section,

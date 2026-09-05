@@ -1,7 +1,12 @@
 import { Link, useLocation } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
 import type { NavConfig } from "#/content/nav-types.ts";
 import { cn } from "#/lib/cn.ts";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./shared/DropdownMenu.tsx";
 import { DocsSearch } from "./shared/DocsSearch.tsx";
 import { LibrarySwitcher } from "./shared/LibrarySwitcher.tsx";
 import { ThemeToggle } from "./shared/ThemeToggle.tsx";
@@ -103,27 +108,8 @@ export function DocsHeader({
   base: string;
   nav: NavConfig;
 }) {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
-  const closeMenu = () => setMenuOpen(false);
   const githubLink = nav.socialLinks.find((link) => link.icon === "github")
     ?.link;
-
-  useEffect(() => {
-    if (!menuOpen) return;
-    function onPointerDown(event: PointerEvent): void {
-      if (!menuRef.current?.contains(event.target as Node)) setMenuOpen(false);
-    }
-    function onKeyDown(event: KeyboardEvent): void {
-      if (event.key === "Escape") setMenuOpen(false);
-    }
-    document.addEventListener("pointerdown", onPointerDown);
-    document.addEventListener("keydown", onKeyDown);
-    return () => {
-      document.removeEventListener("pointerdown", onPointerDown);
-      document.removeEventListener("keydown", onKeyDown);
-    };
-  }, [menuOpen]);
 
   return (
     <header className="sticky top-0 z-40 h-14 border-b border-border bg-bg">
@@ -149,9 +135,9 @@ export function DocsHeader({
               />
             ))}
           </nav>
-          <hr className="border-t-0 h-4 w-px bg-border"/>
+          <hr className="border-t-0 h-4 w-px bg-border" />
           <ThemeToggle />
-          <hr className="border-t-0 h-4 w-px bg-border"/>
+          <hr className="border-t-0 h-4 w-px bg-border" />
           {githubLink && (
             <a
               href={githubLink}
@@ -163,35 +149,26 @@ export function DocsHeader({
               <GitHubIcon className="h-5 w-5" />
             </a>
           )}
-          <div ref={menuRef} className="relative lg:hidden">
-            <button
-              type="button"
-              aria-label="Menu"
-              aria-expanded={menuOpen}
-              aria-haspopup="menu"
-              onClick={() => setMenuOpen((value) => !value)}
+          <DropdownMenu className="lg:hidden">
+            <DropdownMenuTrigger
+              label="Menu"
               className="flex h-8 w-8 items-center justify-center rounded text-text2 hover:bg-bg-soft"
             >
               <MenuIcon className="h-5 w-5" />
-            </button>
-            {menuOpen && (
-              <nav
-                role="menu"
-                className="absolute top-full right-0 z-20 mt-2 flex w-48 flex-col gap-1 rounded-md border border-border bg-bg-elv p-2 text-sm shadow-popover"
-              >
-                {nav.nav.map((item) => (
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="flex w-48 flex-col gap-1 p-2 text-sm">
+              {nav.nav.map((item) => (
+                <DropdownMenuItem key={item.text} asChild>
                   <NavLinkItem
-                    key={item.text}
                     base={base}
                     link={item.link}
                     text={item.text}
                     className="rounded px-2 py-1.5 hover:bg-bg-soft"
-                    onClick={closeMenu}
                   />
-                ))}
-              </nav>
-            )}
-          </div>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     </header>
