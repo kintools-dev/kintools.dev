@@ -27,6 +27,18 @@ const poimandresLight = JSON.parse(
   ),
 );
 
+// A copy of Shiki's bundled `poimandres` theme with its comment color
+// patched: the original renders comments at `#767c9d` with partial alpha,
+// only ~2.6:1 against the theme's `#1b1e28` background and well under WCAG
+// AA. Here comments use `#d78a75` (~6.2:1) instead -- the same rust hue as
+// `poimandresLight`'s `#a83a1c` comments, lightened for a dark background.
+const poimandresDark = JSON.parse(
+  readFileSync(
+    new URL("./src/content/poimandres-dark.json", import.meta.url),
+    "utf-8",
+  ),
+);
+
 const config = defineConfig({
   resolve: {
     alias: [
@@ -97,10 +109,11 @@ const config = defineConfig({
           {
             // Dual-theme (CSS variable) mode: every token span carries both
             // `--shiki-light` and `--shiki-dark`, and CSS in global.css
-            // swaps which one wins with the active site theme. `poimandres`
-            // is Shiki's bundled dark theme; `poimandresLight` is the
-            // hand-tuned light counterpart loaded above.
-            theme: { light: poimandresLight, dark: "poimandres" },
+            // swaps which one wins with the active site theme. `poimandresDark`
+            // is Shiki's bundled dark theme with its comment color patched
+            // for contrast (see above); `poimandresLight` is the hand-tuned
+            // light counterpart loaded above.
+            theme: { light: poimandresLight, dark: poimandresDark },
             keepBackground: false,
             // Lays each line out as a CSS grid row sized to the widest line,
             // rather than relying on inline whitespace -- without it, a
