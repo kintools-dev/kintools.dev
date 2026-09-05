@@ -33,8 +33,26 @@
    tokens above: keep these as live var() references so they still follow
    whichever theme is active. */
 @theme inline {
-	--color-brand1: var(--accent-11);
-	--color-brand2: var(--accent-12);
+	--color-brand1: var(--accent-9);
+	--color-brand2: var(--accent-11);
+}
+
+/* The step used for floating/overlay surfaces (dropdown menus, dialogs,
+   tooltips) can't be shared with the rest of the scale below the way the
+   others are: those surfaces need to read as *lighter* than the page, but
+   the light scale gets darker as steps increase while the dark scale gets
+   lighter, so no single step number is "lighter than the page" in both
+   directions at once. Light reuses the page's own step (1 is already the
+   lightest available, so these surfaces lean on the border + shadow
+   they're already given to read as raised); dark steps up to 4 for a
+   visible lightening, matching how elevation actually reads there. */
+:root,
+.light {
+	--gray-elevated: var(--gray-1);
+}
+
+.dark {
+	--gray-elevated: var(--gray-4);
 }
 
 /* Neutral scale from @radix-ui/colors' gray/gray-dark, imported above: 12
@@ -47,8 +65,9 @@
 
    Surfaces/text/borders use the solid scale, picked in increasing "distance
    from the page" order so every role stays visually distinct: 1 (page) < 3
-   (component surfaces) < 4 (elevated/floating surfaces) < 7 (borders) < 9
-   (muted text) < 11 (secondary text) < 12 (primary text).
+   (component surfaces) < --gray-elevated (elevated/floating surfaces, see
+   above) < 7 (borders) < 9 (muted text) < 11 (secondary text) < 12 (primary
+   text).
 
    Hover/active use the *alpha* scale instead of another solid step: a
    solid color only avoids collisions with the specific surfaces it was
@@ -57,7 +76,7 @@
 @theme inline {
 	--color-bg: var(--gray-1);
 	--color-bg-soft: var(--gray-3);
-	--color-bg-elv: var(--gray-4);
+	--color-bg-elv: var(--gray-elevated);
 	--color-bg-hover: var(--gray-a4);
 	--color-bg-active: var(--gray-a5);
 	--color-border: var(--gray-7);
