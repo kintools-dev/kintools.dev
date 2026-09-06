@@ -47,13 +47,22 @@
 		@apply text-brand2;
 	}
 
+	/* `display: block` + `overflow-x: auto` turns the table into its own
+	horizontal scroll container, so a wide comparison table (long inline-code
+	cells) scrolls instead of painting over the sticky ToC beside `<main>`. */
 	.docs table {
-		@apply my-4 w-full border-collapse;
+		@apply my-4 block w-full overflow-x-auto border-collapse;
 	}
 
 	.docs th,
 	.docs td {
-		@apply border border-border px-3 py-1.5 text-left;
+		@apply border border-border px-3 py-1.5 text-left align-top;
+	}
+
+	/* Let long inline code in a cell wrap rather than force the column wider. */
+	.docs th code,
+	.docs td code {
+		@apply wrap-break-word whitespace-normal;
 	}
 }
 
