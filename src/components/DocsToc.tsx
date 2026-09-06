@@ -99,8 +99,6 @@ export function DocsToc({
     };
   }, [items]);
 
-  if (items.length === 0) return null;
-
   return (
     <aside className="sticky top-14 hidden h-[calc(100vh-3.5rem)] shrink-0 basis-52 overflow-y-auto py-8 pl-6 xl:block">
       <h3 className="mb-2 text-xs font-bold tracking-wider text-text3 uppercase">
