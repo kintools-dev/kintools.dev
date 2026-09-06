@@ -272,13 +272,13 @@
     {
       "scope": ["entity.name.type.alias"],
       "settings": {
-        "foreground": "#3c4257"
+        "foreground": "#1a6fb0"
       }
     },
     {
-      "scope": ["keyword.control.as", "entity.name.type", "support.type"],
+      "scope": ["entity.name.type", "support.type"],
       "settings": {
-        "foreground": "#3c4257"
+        "foreground": "#1a6fb0"
       }
     },
     {

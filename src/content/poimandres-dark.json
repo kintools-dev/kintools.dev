@@ -724,7 +724,6 @@
         "constant.escape",
         "keyword.other.unit",
         "keyword.other",
-        "string",
         "constant.language",
         "constant.other.symbol",
         "constant.other.key",
@@ -735,6 +734,14 @@
       ],
       "settings": {
         "foreground": "#5DE4c7"
+      }
+    },
+    {
+      "scope": [
+        "string"
+      ],
+      "settings": {
+        "foreground": "#5fb3a1"
       }
     },
     {
@@ -758,17 +765,16 @@
         "entity.name.type.alias"
       ],
       "settings": {
-        "foreground": "#a6accd"
+        "foreground": "#ADD7FF"
       }
     },
     {
       "scope": [
-        "keyword.control.as",
         "entity.name.type",
         "support.type"
       ],
       "settings": {
-        "foreground": "#a6accdC0"
+        "foreground": "#ADD7FF"
       }
     },
     {
