@@ -13,20 +13,15 @@ const rows: Row[] = [
     label: "Types",
     kin: ["FieldApi", "FormApi"],
     rhf: [
+      "FieldValues",
       "FieldPath",
       "FieldPathByValue",
-      "FieldArrayPath",
+      "Control",
       "UseControllerProps",
+      "RegisterOptions",
     ],
-    formik: [],
-    tanstack: [
-      "FieldApi",
-      "FieldGroupApi",
-      "FormApi",
-      "FormGroupApi",
-      "ReactFormApi",
-      "ReactFormExtendedApi",
-    ],
+    formik: ["FormikProps", "FormikHelpers", "FormikErrors", "FieldProps"],
+    tanstack: ["AnyFieldApi"],
   },
   {
     label: "Hooks & components",
@@ -38,6 +33,8 @@ const rows: Row[] = [
       "useFieldArray",
       "useWatch",
       "useFormState",
+      "useFormContext",
+      "FormProvider",
     ],
     formik: [
       "useFormik",
@@ -46,16 +43,20 @@ const rows: Row[] = [
       "Field",
       "FieldArray",
       "useFormikContext",
+      "ErrorMessage",
     ],
     tanstack: [
       "useForm",
+      "useAppForm",
       "useField",
-      "Field",
-      "useFieldGroup",
-      "useFormGroup",
-      "FormGroup",
+      "useFieldContext",
       "useStore",
-      "useSelector",
+      "form.Field",
+      "form.AppField",
+      "form.FormGroup",
+      "form.Subscribe",
+      "withForm",
+      "withFieldGroup",
       "createFormHook",
       "createFormHookContexts",
     ],
@@ -85,9 +86,13 @@ const kinCellClassName = "align-top text-brand1 font-bold";
 const cellClassName = "align-top";
 
 /**
- * A table listing every type and hook/component each library exposes, so
- * readers can see the size of the API surface directly rather than being
- * told about it.
+ * A table of the types and hooks/components a typical app actually works with
+ * in each library, so readers can compare how much they'd have to learn
+ * rather than being told about it.
+ *
+ * Not an exhaustive list of every public export: each cell is filtered to
+ * symbols an app author works with by name in normal use (a reusable field
+ * component, an `onSubmit` signature), the same bar applied to every column.
  */
 export function ApiSurfaceMatrix() {
   const columns: TableColumn<Row>[] = [
