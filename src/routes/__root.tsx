@@ -95,12 +95,15 @@ function RootLayout({ children }: { children: React.ReactNode }) {
               '(function(){try{var t=localStorage.getItem("kintools:theme");var d=t==="dark"||(t!=="light"&&matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.classList.add(d?"dark":"light");}catch(e){}})();',
           }}
         />
-        <script
-          defer
-          src="https://cloud.umami.is/script.js"
-          data-website-id="e3d4bf33-13ad-4a9a-bb17-b31df425c6b7"
-        >
-        </script>
+        {!import.meta.env.DEV &&
+          (
+            <script
+              defer
+              src="https://cloud.umami.is/script.js"
+              data-website-id="e3d4bf33-13ad-4a9a-bb17-b31df425c6b7"
+            >
+            </script>
+          )}
         <HeadContent />
       </head>
       <body>
