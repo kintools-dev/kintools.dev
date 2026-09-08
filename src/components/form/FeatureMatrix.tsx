@@ -89,7 +89,7 @@ const rows: Row[] = [
     },
   },
   {
-    label: "Same primitive for field, group, array, and form",
+    label: "Same model for field, group, array, and form",
     kin: "✅",
     rhf: "❌",
     formik: "❌",
@@ -97,17 +97,14 @@ const rows: Row[] = [
     notes: {
       kin: (
         <>
-          <code>FormApi</code> extends <code>FieldApi</code>{" "}
-          — the form root is a field, not a separate object model. Every node
-          shares the same{" "}
-          <code>value</code>/<code>error</code>/<code>touched</code>/
-          <code>subscribe</code> surface.
+          Every node is a <code>FieldApi</code>. <code>FormApi</code>{" "}
+          extends <code>FieldApi</code>, adding submission/reset logic.
         </>
       ),
       rhf: (
         <>
-          <code>Control</code>, <code>useFieldArray</code>, and{" "}
-          <code>useFormState</code>{" "}
+          <code>Control</code>, <code>useController</code>, <code>useFieldArray</code>, and{" "}
+          <code>useFormState</code>, <code>useWatch</code>{" "}
           are separate, unrelated APIs for group/array/form-level state.
         </>
       ),
@@ -152,10 +149,9 @@ const rows: Row[] = [
       ),
       tanstack: (
         <>
-          <code>FieldApi</code>/<code>FieldGroupApi</code> read from one shared
-          {" "}
-          <code>@tanstack/store</code>{" "}
-          — every mutation notifies every subscriber, each one running its own
+          <code>FormApi</code>, <code>FieldApi</code>/<code>FieldGroupApi</code>
+          {" "}read from one shared <code>@tanstack/store</code>.
+          Every mutation notifies every subscriber, each one running its own
           selector to decide whether to re-render.
         </>
       ),
