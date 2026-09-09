@@ -61,8 +61,12 @@ command works around that by cloning them itself (both are public) before
 running the real build:
 
 ```bash
-curl -fsSL https://deno.land/install.sh | sh -s -- -y && export PATH="$HOME/.deno/bin:$PATH" && git clone --depth 1 https://github.com/kintools-dev/form.git ../form && git clone --depth 1 https://github.com/kintools-dev/store.git ../store && deno task build
+curl -fsSL https://deno.land/install.sh | sh -s -- -y && export PATH="$HOME/.deno/bin:$PATH" && git clone --depth 1 https://github.com/kintools-dev/form.git ../form && git clone --depth 1 https://github.com/kintools-dev/store.git ../store && deno task build && (deno task indexnow || true)
 ```
+
+The trailing `(deno task indexnow || true)` pings IndexNow after each build (see
+[IndexNow](#indexnow) below); `|| true` keeps a failed ping from failing the
+deploy.
 
 Configure the Pages project with that as the build command and `dist/client` as
 the build output directory. `dist/` itself is gitignored -- it's build output,
@@ -76,11 +80,15 @@ hook (Settings -> Builds & deployments -> Deploy hooks) to pick up the change.
 ### IndexNow
 
 `deno task indexnow` submits every URL in `public/sitemap.xml` to IndexNow so
-Bing recrawls changed pages within minutes. Append it to the Pages build command
-(`... && deno task build && deno task indexnow`) so it runs on every deploy, or
-run it by hand after one. Ownership is proven by the key file at
+Bing recrawls changed pages within minutes. The Pages build command runs it on
+every deploy (above). Ownership is proven by the key file at
 `public/179461b699a64b43b34507d46c963e67.txt`; keep the file name and its
 contents in sync with `KEY` in `scripts/ping-indexnow.ts`.
+
+The build command runs before the new deploy goes live, so the very first deploy
+that publishes the key file can't be verified yet. Run `deno task indexnow` once
+by hand after that deploy lands; every deploy after is fine, since IndexNow
+verifies and crawls asynchronously.
 
 Submit `https://kintools.dev/sitemap.xml` once in Bing Webmaster Tools
 (Sitemaps) so Bing knows where it is; it's already linked from `robots.txt`.
