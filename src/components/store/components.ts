@@ -1,5 +1,6 @@
 import { Button } from "#/components/shared/Button.tsx";
 import { Card } from "#/components/shared/Card.tsx";
+import { CodeBlock } from "#/components/shared/CodeBlock.tsx";
 import { CodeGroup } from "#/components/shared/CodeGroup.tsx";
 import { CodeGroupItem } from "#/components/shared/CodeGroupItem.tsx";
 import { Container } from "#/components/shared/Container.tsx";
@@ -19,6 +20,7 @@ import { FeatureMatrix } from "./FeatureMatrix.tsx";
 // Resolves every custom tag invoked directly in store/docs's markdown.
 // store/docs has no chart/framework-switcher components -- form only.
 export const storeComponents = {
+  pre: CodeBlock,
   Container,
   CodeGroup,
   CodeGroupItem,

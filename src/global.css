@@ -195,7 +195,7 @@ th {
 		@apply m-0 rounded-none;
 	}
 
-	.lib-home figure>pre {
+	.lib-home figure pre {
 		@apply m-0;
 	}
 }

@@ -1,5 +1,6 @@
 import { Button } from "#/components/shared/Button.tsx";
 import { Card } from "#/components/shared/Card.tsx";
+import { CodeBlock } from "#/components/shared/CodeBlock.tsx";
 import { CodeGroup } from "#/components/shared/CodeGroup.tsx";
 import { CodeGroupItem } from "#/components/shared/CodeGroupItem.tsx";
 import { Container } from "#/components/shared/Container.tsx";
@@ -31,6 +32,7 @@ import { PerformanceHighlight } from "./PerformanceHighlight.tsx";
 
 // Resolves every custom tag invoked directly in form/docs's markdown.
 export const formComponents = {
+  pre: CodeBlock,
   Container,
   CodeGroup,
   CodeGroupItem,
