@@ -73,6 +73,18 @@ Because Pages only watches pushes to this repo, a docs change in `form` or
 `docs/**`-triggered workflow that hits this project's Cloudflare Pages deploy
 hook (Settings -> Builds & deployments -> Deploy hooks) to pick up the change.
 
+### IndexNow
+
+`deno task indexnow` submits every URL in `public/sitemap.xml` to IndexNow so
+Bing recrawls changed pages within minutes. Append it to the Pages build command
+(`... && deno task build && deno task indexnow`) so it runs on every deploy, or
+run it by hand after one. Ownership is proven by the key file at
+`public/179461b699a64b43b34507d46c963e67.txt`; keep the file name and its
+contents in sync with `KEY` in `scripts/ping-indexnow.ts`.
+
+Submit `https://kintools.dev/sitemap.xml` once in Bing Webmaster Tools
+(Sitemaps) so Bing knows where it is; it's already linked from `robots.txt`.
+
 ## Routing
 
 This project uses [TanStack Router](https://tanstack.com/router) with file-based
