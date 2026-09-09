@@ -33,7 +33,7 @@ export const docTitles: {
     "guide/common-pitfalls": "Common Pitfalls",
     "guide/shadcn-ui": "shadcn/ui",
     "validators": "Validators",
-    "comparison": "Overview",
+    "comparison": "Comparison overview",
     "comparison/react-hook-form": "vs React Hook Form",
     "comparison/tanstack-form": "vs TanStack Form",
   },
