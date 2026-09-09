@@ -14,10 +14,24 @@ export const DEFAULT_OG_IMAGE = "/og-image.png";
 export interface SeoOptions {
   title: string;
   description: string;
+  /**
+   * Site or section name appended to the `<title>` as `title | siteName`
+   * (e.g. "Basic | Kin Form"), so a bare page heading like "Basic" isn't
+   * both too short and identical across every page under it. Left off the
+   * `og:title`/`twitter:title`, which stay the bare `title`. Skipped when
+   * it equals `title`.
+   */
+  siteName?: string;
   /** Root-relative path, e.g. "/form/guide/basic". Defaults to "/". */
   path?: string;
   /** Root-relative or absolute image URL. Defaults to the site's shared OG image. */
   image?: string;
+  /**
+   * Adds `<meta name="robots" content="noindex">` for a page that shouldn't
+   * be indexed (e.g. the form presentation deck), overriding the root
+   * route's site-wide `index, follow`.
+   */
+  noindex?: boolean;
   /**
    * Root-relative path to this page's raw-markdown mirror (e.g.
    * "/form/guide/basic.md"), written by scripts/build-geo.ts. When given,
@@ -39,11 +53,21 @@ export interface SeoOptions {
  * (matched by `name`/`property`) layers on top of those defaults.
  */
 export function seoHead(
-  { title, description, path = "/", image = DEFAULT_OG_IMAGE, markdownPath }:
-    SeoOptions,
+  {
+    title,
+    description,
+    siteName,
+    path = "/",
+    image = DEFAULT_OG_IMAGE,
+    markdownPath,
+    noindex,
+  }: SeoOptions,
 ) {
   const url = new URL(path, SITE_URL).toString();
   const imageUrl = new URL(image, SITE_URL).toString();
+  const pageTitle = siteName && siteName !== title
+    ? `${title} | ${siteName}`
+    : title;
 
   const links: { rel: string; href: string; type?: string }[] = [
     { rel: "canonical", href: url },
@@ -58,8 +82,9 @@ export function seoHead(
 
   return {
     meta: [
-      { title },
+      { title: pageTitle },
       { name: "description", content: description },
+      ...(noindex ? [{ name: "robots", content: "noindex" }] : []),
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:url", content: url },

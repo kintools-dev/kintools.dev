@@ -4,9 +4,10 @@ import { DocsFooter } from "#/components/DocsFooter.tsx";
 import { DocsHeader } from "#/components/DocsHeader.tsx";
 import { DocsLayout } from "#/components/DocsLayout.tsx";
 import { storeComponents } from "#/components/store/components.ts";
+import { docTitles } from "#/content/doc-titles.ts";
 import { loadDocsPage } from "#/content/page-cache.ts";
 import { storeNav, storePages } from "#/content/store.ts";
-import { markdownMirrorPath, seoHead } from "#/lib/seo.ts";
+import { markdownMirrorPath, seoHead, SITE_NAME } from "#/lib/seo.ts";
 
 export const Route = createFileRoute("/store/$")({
   loader: async ({ params }) => {
@@ -18,11 +19,16 @@ export const Route = createFileRoute("/store/$")({
   },
   head: ({ loaderData, params }) => {
     const slug = params._splat ?? "";
+    const frontmatter = loaderData?.frontmatter;
     return seoHead({
-      title: loaderData?.frontmatter?.title ?? storeNav.title,
-      description: loaderData?.frontmatter?.description ?? storeNav.description,
+      title: frontmatter?.title ?? docTitles.store[slug] ?? storeNav.title,
+      description: frontmatter?.description ?? storeNav.description,
+      // The library homepage carries only the bare library name, so anchor
+      // it under the site; every deeper page anchors under the library.
+      siteName: slug ? storeNav.title : SITE_NAME,
       path: slug ? `/store/${slug}` : "/store",
       markdownPath: markdownMirrorPath("/store", slug),
+      noindex: frontmatter?.noindex,
     });
   },
   component: StoreDocPage,

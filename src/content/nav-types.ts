@@ -32,6 +32,8 @@ export interface DocsFrontmatter {
   description?: string;
   layout?: "home" | false;
   head?: HeadTag[];
+  /** Keeps the page out of search engines and the GEO indexes. */
+  noindex?: boolean;
 }
 
 export interface DocsModule {

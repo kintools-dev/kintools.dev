@@ -4,9 +4,10 @@ import { DocsFooter } from "#/components/DocsFooter.tsx";
 import { DocsHeader } from "#/components/DocsHeader.tsx";
 import { DocsLayout } from "#/components/DocsLayout.tsx";
 import { formComponents } from "#/components/form/components.ts";
+import { docTitles } from "#/content/doc-titles.ts";
 import { formNav, formPages } from "#/content/form.ts";
 import { loadDocsPage } from "#/content/page-cache.ts";
-import { markdownMirrorPath, seoHead } from "#/lib/seo.ts";
+import { markdownMirrorPath, seoHead, SITE_NAME } from "#/lib/seo.ts";
 
 export const Route = createFileRoute("/form/$")({
   loader: async ({ params }) => {
@@ -18,11 +19,16 @@ export const Route = createFileRoute("/form/$")({
   },
   head: ({ loaderData, params }) => {
     const slug = params._splat ?? "";
+    const frontmatter = loaderData?.frontmatter;
     return seoHead({
-      title: loaderData?.frontmatter?.title ?? formNav.title,
-      description: loaderData?.frontmatter?.description ?? formNav.description,
+      title: frontmatter?.title ?? docTitles.form[slug] ?? formNav.title,
+      description: frontmatter?.description ?? formNav.description,
+      // The library homepage carries only the bare library name, so anchor
+      // it under the site; every deeper page anchors under the library.
+      siteName: slug ? formNav.title : SITE_NAME,
       path: slug ? `/form/${slug}` : "/form",
       markdownPath: markdownMirrorPath("/form", slug),
+      noindex: frontmatter?.noindex,
     });
   },
   component: FormDocLayout,

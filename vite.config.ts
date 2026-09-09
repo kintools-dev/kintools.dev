@@ -139,7 +139,15 @@ const config = defineConfig({
         crawlLinks: true,
         autoSubfolderIndex: false,
       },
-      pages: [{ path: "/" }, { path: "/form" }, { path: "/store" }],
+      // /form/guide/faq is in the sitemap and llms.txt but, unlike its
+      // store counterpart, isn't in any sidebar, so crawlLinks never
+      // reaches it -- name it explicitly so it prerenders too.
+      pages: [
+        { path: "/" },
+        { path: "/form" },
+        { path: "/store" },
+        { path: "/form/guide/faq" },
+      ],
     }),
     viteReact(),
   ],
