@@ -14,6 +14,7 @@ export const docTitles: {
     "guide/getting-started": "Getting Started",
     "guide/concepts": "Concepts",
     "guide/basic": "Basic",
+    "guide/faq": "FAQ & Non-Goals",
     "guide/per-node-validation": "Per-node Validation",
     "guide/schema-validation": "Schema Validation",
     "guide/linked-fields": "Linked Fields",
@@ -35,7 +36,6 @@ export const docTitles: {
     "comparison": "Overview",
     "comparison/react-hook-form": "vs React Hook Form",
     "comparison/tanstack-form": "vs TanStack Form",
-    "guide/faq": "FAQ & Non-Goals",
   },
   "store": {
     "guide": "Why Kin Store?",
