@@ -48,6 +48,57 @@ async function scanDist(): Promise<{ files: number; hasHtml: boolean }> {
   return { files, hasHtml };
 }
 
+// TanStack Start serializes each route match's internal id into the inline
+// `<script class="$tsr">` hydration payload. Those ids join their segments
+// with a raw U+0000 (an in-memory sentinel that can't occur in a URL), and
+// Start's serializer writes it out unescaped, so every prerendered page
+// ships literal NUL bytes inside `text/html`. That's an invalid document:
+// Bing refuses to index it, and Google only tolerates it by replacing the
+// bytes per the HTML parse spec. Every NUL sits inside a JS string literal
+// in that script, where a backslash-u-0000 escape sequence decodes to the
+// exact same character at hydration time, so this rewrite is a runtime
+// no-op. Works byte-wise so multi-byte UTF-8 elsewhere is untouched.
+async function escapeNulBytesInHtml(): Promise<void> {
+  const escape = new TextEncoder().encode("\\u0000"); // 6 ASCII bytes
+  let patched = 0;
+
+  async function walk(dir: string): Promise<void> {
+    for await (const entry of Deno.readDir(dir)) {
+      const path = `${dir}/${entry.name}`;
+      if (entry.isDirectory) {
+        await walk(path);
+        continue;
+      }
+      if (!entry.name.endsWith(".html")) continue;
+
+      const bytes = await Deno.readFile(path);
+      let nulCount = 0;
+      for (const b of bytes) if (b === 0) nulCount++;
+      if (nulCount === 0) continue;
+
+      const out = new Uint8Array(
+        bytes.length + nulCount * (escape.length - 1),
+      );
+      let j = 0;
+      for (let i = 0; i < bytes.length; i++) {
+        if (bytes[i] === 0) {
+          out.set(escape, j);
+          j += escape.length;
+        } else {
+          out[j++] = bytes[i];
+        }
+      }
+      await Deno.writeFile(path, out);
+      patched++;
+    }
+  }
+
+  await walk(distDir);
+  console.log(
+    `build-site: escaped NUL bytes in ${patched} prerendered page(s)`,
+  );
+}
+
 const IDLE_CHECKS_REQUIRED = 4; // ~8s of no new files, once html exists
 const idleUntilDone = (async () => {
   let lastFiles = -1;
@@ -71,14 +122,18 @@ const outcome = await Promise.race([
 ]);
 
 if (outcome.kind === "exited") {
-  // The build never hung in the first place (or crashed) -- propagate its
-  // real exit code either way.
-  Deno.exit(outcome.status.code);
+  // The build finished on its own without hanging. A non-zero code means it
+  // crashed -- propagate and skip post-processing.
+  if (outcome.status.code !== 0) Deno.exit(outcome.status.code);
+} else {
+  // The build hung after prerendering finished; stop the orphaned server.
+  try {
+    child.kill();
+  } catch {
+    // Already exited on its own between the last scan and here.
+  }
 }
 
-try {
-  child.kill();
-} catch {
-  // Already exited on its own between the last scan and here.
-}
+await escapeNulBytesInHtml();
+
 Deno.exit(0);
