@@ -2,7 +2,6 @@ import type * as React from "react";
 import { Lede } from "./Lede.tsx";
 import { Prose } from "./Prose.tsx";
 import { Section } from "./Section.tsx";
-import { SectionHeader } from "./SectionHeader.tsx";
 import { cn } from "#/lib/cn.ts";
 
 // The home page's opening block: title, an emphasized one-line summary, an
@@ -26,7 +25,7 @@ export function Hero({
 }) {
   return (
     <Section className={cn("pt-20 sm:pt-32", className)}>
-      <SectionHeader as="h1">
+      <h1 className="mb-4 max-w-180 text-4xl font-medium sm:text-5xl">
         {icon
           ? (
             <span className="inline-flex items-center gap-3">
@@ -35,7 +34,7 @@ export function Hero({
             </span>
           )
           : title}
-      </SectionHeader>
+      </h1>
       <Lede>{lede}</Lede>
       {description && <Prose>{description}</Prose>}
       <div className="flex gap-3 pt-2">{children}</div>

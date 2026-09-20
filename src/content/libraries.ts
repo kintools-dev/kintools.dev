@@ -38,7 +38,7 @@ export const libraries: LibraryInfo[] = [
       "Start with a plain store. Add structure only when the app earns it.",
     description: "Reactive state library.",
     bundleSizes: [
-      { framework: "React", size: "2.0 KB" },
+      { framework: "React", size: "1.6 KB" },
     ],
   },
 ];

@@ -8,7 +8,7 @@ export function SectionHeader({
   children?: React.ReactNode;
 }) {
   return (
-    <Tag className="mb-4 max-w-180 text-3xl font-medium sm:text-5xl">
+    <Tag className="mb-4 max-w-180 text-3xl font-medium sm:text-4xl">
       {children}
     </Tag>
   );

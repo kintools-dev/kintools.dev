@@ -18,7 +18,7 @@ import { SideBySide } from "#/components/shared/SideBySide.tsx";
 import { FeatureMatrix } from "./FeatureMatrix.tsx";
 
 // Resolves every custom tag invoked directly in store/docs's markdown.
-// store/docs has no chart/framework-switcher components -- form only.
+// store/docs has no framework-switcher component -- form only.
 export const storeComponents = {
   pre: CodeBlock,
   Container,

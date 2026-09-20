@@ -51,7 +51,7 @@ export function CodeGroup({ children }: { children?: React.ReactNode }) {
       <div className="grid grid-cols-2 gap-4">
         {items.map((item, i) => (
           <div key={labels[i]}>
-            <div className="fixed bg-bg w-full border-b border-border py-2 px-4 text-2xl font-bold text-text1">
+            <div className="fixed z-10 bg-bg w-full border-b border-border py-2 px-4 text-2xl font-bold text-text1">
               {labels[i]}
             </div>
             <div className="mt-10 code-group-panel block">{item}</div>

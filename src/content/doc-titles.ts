@@ -40,10 +40,9 @@ export const docTitles: {
   "store": {
     "guide": "Why Kin Store?",
     "guide/getting-started": "Getting Started",
-    "guide/design-principles": "Design Principles",
     "guide/faq": "FAQ & Non-Goals",
     "guide/create-store": "createStore",
-    "guide/with-plugins": "withPlugins",
+    "guide/with-plugins": "Using Plugins",
     "guide/derive": "derive",
     "guide/writing-plugins": "Writing Plugins",
     "comparison": "Comparison",

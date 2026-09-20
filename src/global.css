@@ -174,6 +174,16 @@ th {
 		@apply whitespace-nowrap border border-border;
 	}
 
+	/* Inline code inside a link takes the brand color, so it reads as a link
+	rather than as plain inline code (which is pink). */
+	a>code {
+		@apply border-brand1/40 bg-brand1/10 text-brand2;
+	}
+
+	a:hover>code {
+		@apply border-brand1 bg-brand1/20;
+	}
+
 	pre>code {
 		@apply border-0 bg-transparent p-0 text-text1 text-sm;
 	}

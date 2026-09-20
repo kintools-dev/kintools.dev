@@ -16,7 +16,7 @@ interface Row extends Record<Competitor, string> {
 const rows: Row[] = [
   {
     label: "Bundle size",
-    kin: "2.0 KB",
+    kin: "1.6 KB",
     zustand: "389 B",
     redux: "17.5 KB",
     jotai: "4.0 KB",
@@ -224,15 +224,6 @@ export function FeatureMatrix({ full = false }: { full?: boolean }) {
         Bundle sizes are each library's full package import, bundled with
         rolldown, minified, and gzipped. Tree-shaking down to only the APIs you
         use will land smaller across the board.
-      </p>
-      <p className={legendClassName}>
-        Kin Store is new: this table is accurate today, but Redux, Zustand,
-        Jotai, and MobX all carry years of production use this library doesn't
-        have yet. Try it, and{" "}
-        <a href="https://github.com/kintools-dev/store/issues">
-          tell us where it breaks
-        </a>
-        .
       </p>
     </div>
   );
