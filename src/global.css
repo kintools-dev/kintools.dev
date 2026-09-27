@@ -198,7 +198,7 @@ th {
 	}
 
 	pre [data-highlighted-line] {
-		@apply border-brand1 bg-brand1/9;
+		@apply border-brand1 bg-brand2/9;
 	}
 
 	.code-group-panel pre {
