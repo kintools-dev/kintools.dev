@@ -19,6 +19,7 @@ export const docTitles: {
     "guide/schema-validation": "Schema Validation",
     "guide/linked-fields": "Linked Fields",
     "guide/listeners": "Listeners",
+    "guide/conditional-fields": "Conditional Fields",
     "guide/nested-objects": "Nested Objects",
     "guide/dynamic-arrays": "Dynamic Arrays",
     "guide/flat-vs-nested": "Flat vs. Nested Structure",
