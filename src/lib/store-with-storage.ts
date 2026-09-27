@@ -1,4 +1,4 @@
-import { createStore, type Store } from "@kintools/store-core";
+import { createStore, type Store } from "@kintools/store-react";
 
 /**
  * A store backed by `localStorage[key]`: its initial value comes from
@@ -44,8 +44,8 @@ export function createStoreWithStorage<T>(
 
   const store = createStore<T>(initial);
   if (hasStorage) {
-    store.subscribe((get) => {
-      const value = get();
+    store.subscribe(function () {
+      const value = this.get();
       localStorage.setItem(key, serialize(value));
       onChange?.(value);
     });
