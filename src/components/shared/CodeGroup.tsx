@@ -1,5 +1,6 @@
 import type * as React from "react";
 import { Children, isValidElement, useState } from "react";
+import { flushSync } from "react-dom";
 import { useStore } from "@kintools/store-react";
 import { frameworks, frameworkStore } from "./framework-store.ts";
 import { useSideBySideFullscreen } from "./side-by-side-context.ts";
@@ -33,13 +34,21 @@ export function CodeGroup({ children }: { children?: React.ReactNode }) {
     ? Math.max(syncedIndex, 0)
     : localActive;
 
-  function selectTab(index: number): void {
-    if (isFrameworkSynced) {
-      const fw = frameworks.find((f) => f.label === labels[index]);
-      if (fw) frameworkStore.set(fw.id);
-    } else {
-      setLocalActive(index);
-    }
+  function selectTab(index: number, tab: HTMLElement): void {
+    // Switching can resize other synced code groups (and this one's panel),
+    // shifting the page. Commit synchronously, then scroll by however far the
+    // clicked tab moved so it stays put under the pointer.
+    const topBefore = tab.getBoundingClientRect().top;
+    flushSync(() => {
+      if (isFrameworkSynced) {
+        const fw = frameworks.find((f) => f.label === labels[index]);
+        if (fw) frameworkStore.set(fw.id);
+      } else {
+        setLocalActive(index);
+      }
+    });
+    const delta = tab.getBoundingClientRect().top - topBefore;
+    if (delta !== 0) globalThis.scrollBy({ top: delta, behavior: "instant" });
   }
 
   // Side-by-side fullscreen shows every tab at once, so a shared
@@ -76,7 +85,7 @@ export function CodeGroup({ children }: { children?: React.ReactNode }) {
             className={`min-w-8 cursor-pointer border-b-2 border-transparent bg-none h-10 text-sm font-semibold ${
               i === activeIndex ? "border-b-brand1 text-brand1" : "text-text2"
             }`}
-            onClick={() => selectTab(i)}
+            onClick={(e) => selectTab(i, e.currentTarget)}
           >
             {label}
           </button>
